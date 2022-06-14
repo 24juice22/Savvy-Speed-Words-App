@@ -3,12 +3,14 @@ import Box from "./Box"
 
 export default function Boxrow(props) {
     const boxIndex = [0, 1, 2, 3, 4]
-    const createRowBoxes = boxIndex.map(item => <Box boxIndex={item} rowNumber={props.rowNumber} key={item} />)
-    
+    const createBoxes = boxIndex.map(index => 
+        <Box columnIndex={index} rowIndex={props.rowIndex} position={props.position} boxes={props.boxes} key={index}/>
+    )
+     
 
     return (
         <div className="row-{props.rowNumber} flex">
-            {createRowBoxes}
+            {createBoxes}
         </div> 
     )
 }
