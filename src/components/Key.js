@@ -1,8 +1,9 @@
 import React from "react"
 
-export default function Key({boxes, setBoxes, keyValue, position, setPosition}) {
+export default function Key({boxes, setBoxes, keyValue, position, setPosition, hasStarted}) {
     
     function insertLetter() {
+        if (hasStarted !== true) return
         if (position.columnIndex > 4) return
         const board = [...boxes]
         board[position.rowIndex][position.columnIndex] = keyValue

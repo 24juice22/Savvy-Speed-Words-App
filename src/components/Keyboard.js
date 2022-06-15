@@ -27,14 +27,14 @@ export default function Keyboard(props) {
     return (
         <div className="keyboard">
             <div className="flex keyboard-top">
-                {keysTop.map(letter => <Key position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
+                {keysTop.map(letter => <Key hasStarted={props.hasStarted} position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
             </div>
             <div className="flex keyboard-middle">
-                {keysMiddle.map(letter => <Key position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
+                {keysMiddle.map(letter => <Key hasStarted={props.hasStarted} position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
             </div>
             <div className="flex keyboard-bottom">
                 <div className="key key-special key-enter" onClick={enterWord}>ENTER</div>
-                {keysBottom.map(letter => <Key position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
+                {keysBottom.map(letter => <Key hasStarted={props.hasStarted} position={props.position} setPosition={props.setPosition} setBoxes={props.setBoxes} boxes={props.boxes} keyValue={letter} key={letter} />)}
                 <div className="key key-special key-delete" onClick={deleteLetter} >DELETE</div>
             </div>
         </div> 
