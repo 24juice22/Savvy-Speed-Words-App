@@ -2,6 +2,9 @@ import React from "react"
 import Key from "./Key"
 
 export default function Keyboard(props) {  
+    const [wordEntered, setWordEntered] = React.useState("")
+    let newWord=""
+
     const keysTop = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const keysMiddle = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const keysBottom = ["Z", "X", "C", "V", "B", "N", "M"]
@@ -21,7 +24,22 @@ export default function Keyboard(props) {
 
     function enterWord() {
       if (props.position.columnIndex !== 5) return
-      props.setPosition({rowIndex: props.position.rowIndex + 1, columnIndex: 0})  
+      const newBoard = [...props.boxes]
+      newWord = (newBoard[props.position.rowIndex].join(""))
+      checkIfValidWord()  
+    }
+
+    function checkIfValidWord() {
+        if (props.words.includes(newWord)) {
+            console.log("its a word", newWord)
+            props.setPosition({rowIndex: props.position.rowIndex + 1, columnIndex: 0})
+        }
+        else {
+            console.log("not a word")
+            props.errorShake()
+            setTimeout(props.errorShake, 610)
+        }
+        
     }
 
     return (

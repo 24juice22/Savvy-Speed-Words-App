@@ -4,7 +4,7 @@ import Box from "./Box"
 export default function Boxrow(props) {
     const boxIndex = [0, 1, 2, 3, 4]
     const createBoxes = boxIndex.map(index => 
-        <Box columnIndex={index} rowIndex={props.rowIndex} position={props.position} boxes={props.boxes} key={index}/>
+        <Box error={props.error} columnIndex={index} rowIndex={props.rowIndex} position={props.position} boxes={props.boxes} key={index}/>
     )
      
 

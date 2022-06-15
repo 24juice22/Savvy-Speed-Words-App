@@ -5,6 +5,6 @@ export default function Box(props) {
     
     return (
         <div 
-            className="box row-{props.props.rowNumber}__box">{letter}</div>
+            className={props.error && props.rowIndex === props.position.rowIndex ? "box row-{props.props.rowNumber}__box error" : "box row-{props.props.rowNumber}__box"} >{letter}</div>
     )
 }
