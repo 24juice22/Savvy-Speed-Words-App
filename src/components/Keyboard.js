@@ -30,11 +30,9 @@ export default function Keyboard(props) {
 
     function checkIfValidWord() {
         if (props.words.includes(newWord)) {
-            console.log("its a word", newWord)
             props.setPosition({rowIndex: props.position.rowIndex + 1, columnIndex: 0})
         }
         else {
-            console.log("not a word")
             props.toggleErrorShake(newWord)
             setTimeout(props.toggleErrorShake, 610)
         }
