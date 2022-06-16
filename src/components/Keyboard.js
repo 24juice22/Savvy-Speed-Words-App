@@ -2,7 +2,6 @@ import React from "react"
 import Key from "./Key"
 
 export default function Keyboard(props) {  
-    const [wordEntered, setWordEntered] = React.useState("")
     let newWord=""
 
     const keysTop = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
@@ -36,8 +35,8 @@ export default function Keyboard(props) {
         }
         else {
             console.log("not a word")
-            props.errorShake()
-            setTimeout(props.errorShake, 610)
+            props.toggleErrorShake(newWord)
+            setTimeout(props.toggleErrorShake, 610)
         }
         
     }

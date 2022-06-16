@@ -7,7 +7,8 @@ export default function App() {
   const [position, setPosition] = React.useState({rowIndex: 0, columnIndex: 0})
   const [hasStarted, setHasStarted] = React.useState(false)
   const [error, setError] = React.useState(false)
-  
+  let wordEntered = boxes[position.rowIndex].join("")
+
   let word = "flaaa"
   let words = ["lfoof", "flaaa", "scalf", "lfolf", "FLAME", "apple", "MAXAM", "ataaa"]
 
@@ -32,7 +33,7 @@ export default function App() {
     setHasStarted(true)
   }
 
-  function errorShake() {
+  function toggleErrorShake() {
     setError(prevError => !prevError)
   }
 
@@ -46,9 +47,9 @@ export default function App() {
       </div>
       <div className="message-area flex">
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
-        <p className="message"></p>
+        <p className="message">{error && `"${wordEntered}" is not a Word!`}</p>
       </div>
-      <Keyboard errorShake={errorShake} words={words} hasStarted={hasStarted} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard toggleErrorShake={toggleErrorShake} words={words} hasStarted={hasStarted} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }
