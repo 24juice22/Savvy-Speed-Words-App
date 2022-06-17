@@ -46,6 +46,20 @@ body {
   align-items: center;
 }
 
+#boxPink {
+  background-color: var(--color-pink);
+}
+
+#boxBlue {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+#boxGray {
+  background-color: var(--color-gray);
+  border-color: var(--color-gray);
+}
+
 .flex {
   display: flex;
   justify-content: center;

@@ -1,10 +1,12 @@
 import React from "react"
 
-export default function Box(props) {
-    const letter = props.boxes[props.rowIndex][props.columnIndex]
+export default function Box({boxes, columnIndex, rowIndex, position, error}) {
+    const letter = boxes[rowIndex][columnIndex]
     
     return (
         <div 
-            className={props.error && props.rowIndex === props.position.rowIndex ? "box row-{props.props.rowNumber}__box error" : "box row-{props.props.rowNumber}__box"} >{letter}</div>
+            className={error && rowIndex === position.rowIndex ? 
+                "box error" : "box"}
+                id={letter.color}>{letter.value}</div>
     )
 }
