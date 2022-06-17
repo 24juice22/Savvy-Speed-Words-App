@@ -8,7 +8,7 @@ export default function App() {
   const [hasStarted, setHasStarted] = React.useState(false)
   const [error, setError] = React.useState(false)
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
-  
+
   let hashOfWord = {}
   let pinkHash = {}
   let blueHash = {}
@@ -96,7 +96,7 @@ export default function App() {
       </div>
       <div className="message-area flex">
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
-        <p className="message">{error && `"${wordEntered}" is not a Word!`}</p>
+        <p className="message">{error && `"${wordEntered}" is not a Word!`}{(wordEntered === word && boxes[position.rowIndex][0].color !== null) && `You win! The word is "${word}"`}</p>
       </div>
       <Keyboard colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>

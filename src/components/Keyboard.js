@@ -28,20 +28,19 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
 
     function checkIfValidWord() {
         if (words.includes(wordEntered)) {
-            setPosition({rowIndex: position.rowIndex + 1, columnIndex: 0})
+            if (word !== wordEntered)
+                setPosition({rowIndex: position.rowIndex + 1, columnIndex: 0})
             checkIfCorrectWord()
+            
         }
         else {
             toggleErrorShake()
             setTimeout(toggleErrorShake, 610)
         }
-        
     }
 
     function checkIfCorrectWord() {
         colors()
-        if (wordEntered === word)
-            console.log("woooooo")
     }
 
     return (
