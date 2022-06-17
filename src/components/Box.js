@@ -6,7 +6,9 @@ export default function Box({boxes, columnIndex, rowIndex, position, error}) {
     return (
         <div 
             className={error && rowIndex === position.rowIndex ? 
-                "box error" : "box"}
-                id={letter.color}>{letter.value}</div>
+                        "box error" : position.rowIndex > rowIndex ? 
+                        "box boxFlip" : "box"}
+            id={letter.color}>{letter.value}
+        </div>
     )
 }
