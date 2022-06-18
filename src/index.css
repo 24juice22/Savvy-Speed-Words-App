@@ -32,6 +32,24 @@ body {
   text-shadow: 3px 3px 3px var(--color-blue);
 }
 
+.word-area {
+  position:relative;
+}
+
+.time {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  color: yellow;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.time-finished {
+  color: rgb(5, 253, 5);
+  font-size: 5.5rem;
+}
+
 .box {
   height: 40px;
   width: 40px;

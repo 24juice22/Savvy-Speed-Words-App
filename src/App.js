@@ -9,6 +9,7 @@ export default function App() {
   const [hasStarted, setHasStarted] = React.useState(false)
   const [error, setError] = React.useState(false)
   const [message, setMessage] = React.useState("")
+  const [timer, setTimer] = React.useState("")
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
 
   let hashOfWord = {}
@@ -39,15 +40,16 @@ export default function App() {
   }
 
   function allNewKeys() {
-    const newKeys = [{value: "Q", color: null}, {value: "W", color: null}, {value: "E", color: null}, {value: "R", color: null},
-                     {value: "T", color: null}, {value: "Y", color: null}, {value: "U", color: null}, {value: "I", color: null},
-                     {value: "O", color: null}, {value: "P", color: null}, {value: "A", color: null}, {value: "S", color: null},
-                     {value: "D", color: null}, {value: "F", color: null}, {value: "G", color: null}, {value: "H", color: null},
-                     {value: "J", color: null}, {value: "K", color: null}, {value: "L", color: null}, {value: "Z", color: null},
-                     {value: "X", color: null}, {value: "C", color: null}, {value: "V", color: null}, {value: "B", color: null},
-                     {value: "N", color: null}, {value: "M", color: null}
-                    ]
-                    return newKeys
+    const newKeys = [
+      {value: "Q", color: null}, {value: "W", color: null}, {value: "E", color: null}, {value: "R", color: null},
+      {value: "T", color: null}, {value: "Y", color: null}, {value: "U", color: null}, {value: "I", color: null},
+      {value: "O", color: null}, {value: "P", color: null}, {value: "A", color: null}, {value: "S", color: null},
+      {value: "D", color: null}, {value: "F", color: null}, {value: "G", color: null}, {value: "H", color: null},
+      {value: "J", color: null}, {value: "K", color: null}, {value: "L", color: null}, {value: "Z", color: null},
+      {value: "X", color: null}, {value: "C", color: null}, {value: "V", color: null}, {value: "B", color: null},
+      {value: "N", color: null}, {value: "M", color: null}
+    ]
+    return newKeys
   }
   
   const rows = [0, 1, 2, 3, 4, 5]
@@ -57,6 +59,21 @@ export default function App() {
 
   function startButtonClick() {
     setHasStarted(true)
+    let startDate = new Date().getTime();
+    let countUpInterval = setInterval(countUp, 100, startDate)
+  }
+
+  function countUp(beginningDate) {
+    let timeIncreaseDate = new Date().getTime();
+
+    let distance = timeIncreaseDate - beginningDate;
+
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let milliseconds = Math.floor((distance % 1000) / 100);
+
+    let displayDistance = minutes + "m " + seconds + "." + milliseconds + "s ";
+    setTimer(prevTimer => displayDistance)
   }
 
   function toggleErrorShake() {
@@ -124,7 +141,8 @@ export default function App() {
     <div>
       <h1 className="title">SA<span>VV</span>Y SPEED WORDS</h1>
       <div className="word-area">
-        {boxRowElements}  
+        {boxRowElements} 
+        <div className={message === `You win! The word is "${word}"` ? "time time-finished" : "time"}>{timer}</div>
       </div>
       <div className="message-area flex">
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
