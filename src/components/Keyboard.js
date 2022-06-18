@@ -1,7 +1,7 @@
 import React from "react"
 import Key from "./Key"
 
-export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, setMessage}) {  
+export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, setMessage, keyColor}) {  
     const newBoard = [...boxes]
     let wordEntered = (newBoard[position.rowIndex].map(object => object.value).join(""))
 
@@ -43,14 +43,14 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
     return (
         <div className="keyboard">
             <div className="flex keyboard-top">
-                {keysTop.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} />)}
+                {keysTop.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor} />)}
             </div>
             <div className="flex keyboard-middle">
-                {keysMiddle.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} />)}
+                {keysMiddle.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor}/>)}
             </div>
             <div className="flex keyboard-bottom">
                 <div className="key key-special key-enter" onClick={enterWord}>ENTER</div>
-                {keysBottom.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} />)}
+                {keysBottom.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor}/>)}
                 <div className="key key-special key-delete" onClick={deleteLetter} >DELETE</div>
             </div>
         </div> 

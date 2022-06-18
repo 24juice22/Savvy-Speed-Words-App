@@ -159,3 +159,21 @@ body {
   background-color: red;
   border-color: red;
 }
+
+#keyPink {
+  background-color: var(--color-pink);
+  border-color: var(--color-pink);
+  color: white;
+}
+
+#keyBlue {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  color: white;
+}
+
+#keyGray {
+  background-color: var(--color-gray);
+  border-color: var(--color-gray);
+  color: white;
+}

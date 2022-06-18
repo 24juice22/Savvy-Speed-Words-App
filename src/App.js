@@ -5,6 +5,7 @@ import Keyboard from "./components/Keyboard"
 export default function App() {
   const [boxes, setBoxes] = React.useState(allNewBoxes())
   const [position, setPosition] = React.useState({rowIndex: 0, columnIndex: 0})
+  const [keyColor, setKeyColor] = React.useState(allNewKeys())
   const [hasStarted, setHasStarted] = React.useState(false)
   const [error, setError] = React.useState(false)
   const [message, setMessage] = React.useState("")
@@ -36,6 +37,18 @@ export default function App() {
     ]
     return newBoxes
   }
+
+  function allNewKeys() {
+    const newKeys = [{value: "Q", color: null}, {value: "W", color: null}, {value: "E", color: null}, {value: "R", color: null},
+                     {value: "T", color: null}, {value: "Y", color: null}, {value: "U", color: null}, {value: "I", color: null},
+                     {value: "O", color: null}, {value: "P", color: null}, {value: "A", color: null}, {value: "S", color: null},
+                     {value: "D", color: null}, {value: "F", color: null}, {value: "G", color: null}, {value: "H", color: null},
+                     {value: "J", color: null}, {value: "K", color: null}, {value: "L", color: null}, {value: "Z", color: null},
+                     {value: "X", color: null}, {value: "C", color: null}, {value: "V", color: null}, {value: "B", color: null},
+                     {value: "N", color: null}, {value: "M", color: null}
+                    ]
+                    return newKeys
+  }
   
   const rows = [0, 1, 2, 3, 4, 5]
   const boxRowElements = rows.map(row => 
@@ -58,7 +71,9 @@ export default function App() {
 
   function colors() {
     const board = [...boxes]
+    const keyboardColor = [...keyColor]
     for (let i = 0; i < wordEntered.length; i++) {
+        let index = keyboardColor.map(item => item.value).indexOf(wordEntered[i])
         if (wordEntered[i] in pinkHash)
             pinkHash[wordEntered[i]] += 0;
         else
@@ -66,6 +81,8 @@ export default function App() {
         if (wordEntered[i] === word[i]) {
             board[position.rowIndex][i].color = "boxPink"
             setBoxes(board);
+            keyboardColor[index].color = "keyPink"
+            setKeyColor(keyboardColor)
             if (pinkHash[wordEntered[i]] >= 1) 
                 pinkHash[wordEntered[i]] += 1;
             else
@@ -74,6 +91,9 @@ export default function App() {
         else if (word.includes(wordEntered[i]) && (hashOfWord[wordEntered[i]] - pinkHash[wordEntered[i]] >= 1) && blueHash[wordEntered[i]] !== 1) {
             board[position.rowIndex][i].color = "boxBlue"
             setBoxes(board);
+            if (keyboardColor[index].color !== "keyPink") 
+                keyboardColor[index].color = "keyBlue"
+            setKeyColor(keyboardColor)
             if (wordEntered[i] in blueHash)
                 blueHash[wordEntered[i]] += 0;
             else
@@ -82,14 +102,17 @@ export default function App() {
         else {
           board[position.rowIndex][i].color = "boxGray"
           setBoxes(board);
+          if (keyboardColor[index].color !== "keyPink" && keyboardColor[index].color !== "keyBlue")
+              keyboardColor[index].color = "keyGray"
+          setKeyColor(keyboardColor)
         }   
     }
    
     for (let j = wordEntered.length - 1; j >= 0; j--) {
-        if (word.includes(wordEntered[j]) && wordEntered[j] !== word[j] && (hashOfWord[wordEntered[j]] - pinkHash[wordEntered[j]] < 1)) {
-          board[position.rowIndex][j].color = "boxGray"
-          setBoxes(board);
-        }
+      if (word.includes(wordEntered[j]) && wordEntered[j] !== word[j] && (hashOfWord[wordEntered[j]] - pinkHash[wordEntered[j]] < 1)) {
+        board[position.rowIndex][j].color = "boxGray"
+        setBoxes(board);
+      }
     }
     if (wordEntered === word && boxes[position.rowIndex][0].color !== null)
       setMessage(`You win! The word is "${word}"`)
@@ -107,7 +130,7 @@ export default function App() {
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
-      <Keyboard setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }
