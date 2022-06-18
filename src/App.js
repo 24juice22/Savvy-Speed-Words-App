@@ -7,6 +7,7 @@ export default function App() {
   const [position, setPosition] = React.useState({rowIndex: 0, columnIndex: 0})
   const [hasStarted, setHasStarted] = React.useState(false)
   const [error, setError] = React.useState(false)
+  const [message, setMessage] = React.useState("")
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
 
   let hashOfWord = {}
@@ -47,6 +48,12 @@ export default function App() {
 
   function toggleErrorShake() {
     setError(prevError => !prevError)
+    setMessage(prevMessage => {
+      if (prevMessage === "") 
+        return (`"${wordEntered}" is not a Word!`)     
+      else 
+        return ("")
+    })
   }
 
   function colors() {
@@ -84,6 +91,8 @@ export default function App() {
           setBoxes(board);
         }
     }
+    if (wordEntered === word && boxes[position.rowIndex][0].color !== null)
+      setMessage(`You win! The word is "${word}"`)
   }
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
@@ -96,9 +105,9 @@ export default function App() {
       </div>
       <div className="message-area flex">
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
-        <p className="message">{error && `"${wordEntered}" is not a Word!`}{(wordEntered === word && boxes[position.rowIndex][0].color !== null) && `You win! The word is "${word}"`}</p>
+        <p className="message">{message}</p>
       </div>
-      <Keyboard colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }

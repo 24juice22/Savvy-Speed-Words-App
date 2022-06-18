@@ -1,7 +1,7 @@
 import React from "react"
 import Key from "./Key"
 
-export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted}) {  
+export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, setMessage}) {  
     const newBoard = [...boxes]
     let wordEntered = (newBoard[position.rowIndex].map(object => object.value).join(""))
 
@@ -28,19 +28,16 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
 
     function checkIfValidWord() {
         if (words.includes(wordEntered)) {
-            if (word !== wordEntered)
+            if (word !== wordEntered && position.rowIndex !== 5)
                 setPosition({rowIndex: position.rowIndex + 1, columnIndex: 0})
-            checkIfCorrectWord()
-            
+            colors()
+            if (word !== wordEntered && position.rowIndex === 5)
+                setMessage(`You lose! The word was "${word}"`)
         }
         else {
             toggleErrorShake()
             setTimeout(toggleErrorShake, 610)
         }
-    }
-
-    function checkIfCorrectWord() {
-        colors()
     }
 
     return (
