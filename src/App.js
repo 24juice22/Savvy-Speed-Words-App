@@ -10,6 +10,8 @@ export default function App() {
   const [error, setError] = React.useState(false)
   const [message, setMessage] = React.useState("")
   const [timer, setTimer] = React.useState("")
+  const [timeIntervalID, setTimeIntervalID] = React.useState(0)
+
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
 
   let hashOfWord = {}
@@ -61,6 +63,7 @@ export default function App() {
     setHasStarted(true)
     let startDate = new Date().getTime();
     let countUpInterval = setInterval(countUp, 100, startDate)
+    setTimeIntervalID(countUpInterval)
   }
 
   function countUp(beginningDate) {
@@ -131,8 +134,10 @@ export default function App() {
         setBoxes(board);
       }
     }
-    if (wordEntered === word && boxes[position.rowIndex][0].color !== null)
+    if (wordEntered === word && boxes[position.rowIndex][0].color !== null) {
       setMessage(`You win! The word is "${word}"`)
+      clearInterval(timeIntervalID)
+    }
   }
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
@@ -148,7 +153,7 @@ export default function App() {
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
-      <Keyboard keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }
