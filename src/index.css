@@ -30,6 +30,8 @@ body {
   font-size: 8rem;
   color: var(--color-pink);
   text-shadow: 3px 3px 3px var(--color-blue);
+  font-family: 'Marck Script', cursive;
+  letter-spacing: 2px;
 }
 
 .word-area {

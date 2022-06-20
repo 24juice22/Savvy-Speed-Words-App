@@ -1,8 +1,11 @@
 import React from "react"
 import Boxrow from "./components/Boxrow"
 import Keyboard from "./components/Keyboard"
+import possibleAnswers from "./possibleAnswers"
+import possibleWords from "./possibleWords"
 
 export default function App() {
+  const [word, setWord] = React.useState("")
   const [boxes, setBoxes] = React.useState(allNewBoxes())
   const [position, setPosition] = React.useState({rowIndex: 0, columnIndex: 0})
   const [keyColor, setKeyColor] = React.useState(allNewKeys())
@@ -11,23 +14,12 @@ export default function App() {
   const [message, setMessage] = React.useState("")
   const [timer, setTimer] = React.useState("")
   const [timeIntervalID, setTimeIntervalID] = React.useState(0)
-
+  const words = possibleWords
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
 
   let hashOfWord = {}
   let pinkHash = {}
   let blueHash = {}
-
-  let word = "FLAAA"
-  let words = ["LFOOF", "AAFFF", "QWERA", "QAERA", "FLAAA", "SCALF", "LFOLF", "FLAME", "APPLE", "MAXAM", "AAAAA"]
-  
-
-  for (let i = 0; i < word.length; i++) {
-    if (word[i] in hashOfWord)
-        hashOfWord[word[i]] += 1;
-    else
-        hashOfWord[word[i]] = 1;
-  }
 
   function allNewBoxes() {
     const newBoxes = [
@@ -61,6 +53,11 @@ export default function App() {
 
   function startButtonClick() {
     setHasStarted(true)
+
+    let randomNumber = Math.floor(Math.random() * possibleAnswers.length)
+    let theWord = possibleAnswers[randomNumber].toUpperCase()
+    setWord(theWord)
+
     let startDate = new Date().getTime();
     let countUpInterval = setInterval(countUp, 100, startDate)
     setTimeIntervalID(countUpInterval)
@@ -90,6 +87,12 @@ export default function App() {
   }
 
   function colors() {
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] in hashOfWord)
+          hashOfWord[word[i]] += 1;
+      else
+          hashOfWord[word[i]] = 1;
+    }
     const board = [...boxes]
     const keyboardColor = [...keyColor]
     for (let i = 0; i < wordEntered.length; i++) {
