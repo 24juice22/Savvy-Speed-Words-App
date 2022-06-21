@@ -79,7 +79,7 @@ export default function App() {
 
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    let milliseconds = Math.floor((distance % 1000) / 100);
+    let milliseconds = Math.floor((distance % 10000) / 100);
 
     let displayDistance = minutes + "m " + seconds + "." + milliseconds + "s ";
     setTimer(prevTimer => displayDistance)
@@ -185,7 +185,7 @@ export default function App() {
       </div>
       <div className="message-area flex">
         {name === "" && <Form setName={setName}/>}
-        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} name={name}/>}
+        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer}/>}
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
