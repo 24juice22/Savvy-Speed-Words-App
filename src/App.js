@@ -3,6 +3,7 @@ import Boxrow from "./components/Boxrow"
 import Keyboard from "./components/Keyboard"
 import possibleAnswers from "./possibleAnswers"
 import possibleWords from "./possibleWords"
+import Highscore from "./components/Highscore"
 
 export default function App() {
   const [word, setWord] = React.useState("")
@@ -13,7 +14,12 @@ export default function App() {
   const [error, setError] = React.useState(false)
   const [message, setMessage] = React.useState("")
   const [timer, setTimer] = React.useState("")
+  const[otherTimer, setOtherTimer] = React.useState("")
+  const[gameOver, setGameOver] = React.useState(false)
   const [timeIntervalID, setTimeIntervalID] = React.useState(0)
+  const[highScore, setHighScore] = React.useState(
+    JSON.parse(localStorage.getItem("highScore")) || [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]
+  )
   const words = possibleWords
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
 
@@ -67,6 +73,7 @@ export default function App() {
     let timeIncreaseDate = new Date().getTime();
 
     let distance = timeIncreaseDate - beginningDate;
+    setOtherTimer(distance)
 
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -84,6 +91,18 @@ export default function App() {
       else 
         return ("")
     })
+  }
+
+  function addHighScore() {
+    if (otherTimer < highScore[4]) {
+      console.log(highScore[9])
+      let array = [...highScore]
+      array.pop()
+      array.push(otherTimer)
+      array.sort((a, b) => a - b)
+      setHighScore(array)
+    }
+    console.log(highScore)
   }
 
   function colors() {
@@ -139,9 +158,17 @@ export default function App() {
     }
     if (wordEntered === word && boxes[position.rowIndex][0].color !== null) {
       setMessage(`You win! The word is "${word}"`)
+      setGameOver(prevGameOver => !prevGameOver)
       clearInterval(timeIntervalID)
+      console.log(timer)
+      console.log(otherTimer)
+      addHighScore()
     }
   }
+
+  React.useEffect(() => {
+    localStorage.setItem("highScore", JSON.stringify(highScore))
+  }, [highScore])
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
 
@@ -153,10 +180,11 @@ export default function App() {
         <div className={message === `You win! The word is "${word}"` ? "time time-finished" : "time"}>{timer}</div>
       </div>
       <div className="message-area flex">
+        {gameOver && <Highscore highScore={highScore} />}
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
-      <Keyboard timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }
