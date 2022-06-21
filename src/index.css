@@ -38,29 +38,71 @@ body {
   position:relative;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 8rem;
+  background-color: black;
+  border: 10px solid white;
+  box-shadow: 4px 4px 100vw cyan;
+  z-index: 100;
+  width: 80vw;
+  height: 60vh;
+}
+
+.form__title {
+  font-size: 4rem;
+  color: yellow;
+}
+
 .highScore {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   top: 8rem;
-  background-color: var(--color-pink);
+  background-color: rgb(10, 10, 10);
   border: 10px solid white;
   box-shadow: 4px 4px 100vw cyan;
   z-index: 100;
   width: 80vw;
-  height: 60vh; 
+  height: 80vh; 
 }
 
 .highScore__title {
   color: cyan;
-  font-size: 4rem;
+  font-size: 5rem;
+  margin-top: .75rem;
+  margin-bottom: 0;
+}
+
+.highScore__list {
+  display: flex;
+  flex-direction: column;
 }
 
 .highScore__list > li {
   padding: .5rem;
   color: white;
+  font-size: 2rem;
   font-weight: bold;
+}
+
+.highScore__list-score {
+  list-style-type: none;
+}
+
+.highScore__column {
+  padding: 0 3rem;
+}
+
+.highScore__your-score {
+  font-size: 3.5rem;
+  color: rgb(5, 253, 5);
+  margin-bottom: 1rem;
 }
 
 .time {

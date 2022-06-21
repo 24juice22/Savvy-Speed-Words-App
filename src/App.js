@@ -4,6 +4,7 @@ import Keyboard from "./components/Keyboard"
 import possibleAnswers from "./possibleAnswers"
 import possibleWords from "./possibleWords"
 import Highscore from "./components/Highscore"
+import Form from "./components/Form"
 
 export default function App() {
   const [word, setWord] = React.useState("")
@@ -14,11 +15,12 @@ export default function App() {
   const [error, setError] = React.useState(false)
   const [message, setMessage] = React.useState("")
   const [timer, setTimer] = React.useState("")
-  const[otherTimer, setOtherTimer] = React.useState("")
-  const[gameOver, setGameOver] = React.useState(false)
+  const [otherTimer, setOtherTimer] = React.useState("")
+  const [gameOver, setGameOver] = React.useState(false)
+  const [name, setName] = React.useState("")
   const [timeIntervalID, setTimeIntervalID] = React.useState(0)
-  const[highScore, setHighScore] = React.useState(
-    JSON.parse(localStorage.getItem("highScore")) || [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]
+  const [highScore, setHighScore] = React.useState(
+    JSON.parse(localStorage.getItem("bestTime")) || [{score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}]
   )
   const words = possibleWords
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
@@ -94,15 +96,17 @@ export default function App() {
   }
 
   function addHighScore() {
-    if (otherTimer < highScore[4]) {
-      console.log(highScore[9])
+    if (otherTimer < highScore[19].score) {
       let array = [...highScore]
-      array.pop()
-      array.push(otherTimer)
-      array.sort((a, b) => a - b)
+      array.pop() 
+      array.push({score: otherTimer, name: name})
+      array.sort((a, b) => a.score - b.score)
       setHighScore(array)
     }
-    console.log(highScore)
+  }
+
+  function delayedGameOver() {
+    setGameOver(prevGameOver => !prevGameOver)
   }
 
   function colors() {
@@ -158,7 +162,7 @@ export default function App() {
     }
     if (wordEntered === word && boxes[position.rowIndex][0].color !== null) {
       setMessage(`You win! The word is "${word}"`)
-      setGameOver(prevGameOver => !prevGameOver)
+      setTimeout(delayedGameOver, 1200)
       clearInterval(timeIntervalID)
       console.log(timer)
       console.log(otherTimer)
@@ -167,7 +171,7 @@ export default function App() {
   }
 
   React.useEffect(() => {
-    localStorage.setItem("highScore", JSON.stringify(highScore))
+    localStorage.setItem("bestTime", JSON.stringify(highScore))
   }, [highScore])
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
@@ -177,14 +181,15 @@ export default function App() {
       <h1 className="title">SA<span>VV</span>Y SPEED WORDS</h1>
       <div className="word-area">
         {boxRowElements} 
-        <div className={message === `You win! The word is "${word}"` ? "time time-finished" : "time"}>{timer}</div>
+        <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
       </div>
       <div className="message-area flex">
-        {gameOver && <Highscore highScore={highScore} />}
+        {name === "" && <Form setName={setName}/>}
+        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} name={name}/>}
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
-      <Keyboard setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      <Keyboard delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
     </div>
   )
 }
