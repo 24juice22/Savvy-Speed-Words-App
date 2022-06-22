@@ -1,7 +1,7 @@
 import React from "react"
 import Key from "./Key"
 
-export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, setMessage, keyColor, timeIntervalID, setGameOver, delayedGameOver}) {  
+export default function Keyboard({boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, message, setMessage, keyColor, timeIntervalID, setGameOver, delayedGameOver}) {  
     const newBoard = [...boxes]
     let wordEntered = (newBoard[position.rowIndex].map(object => object.value).join(""))
 
@@ -27,7 +27,7 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
             } 
         }
 
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && message !== `You win! The word is "${word}"`) {
             enterWord()
         } 
         else if (event.key === "Backspace" || event.key === "Delete") {
