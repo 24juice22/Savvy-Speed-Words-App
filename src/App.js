@@ -5,6 +5,7 @@ import possibleAnswers from "./possibleAnswers"
 import possibleWords from "./possibleWords"
 import Highscore from "./components/Highscore"
 import Form from "./components/Form"
+import Choosegame from "./components/Choosegame"
 
 export default function App() {
   const [word, setWord] = React.useState("")
@@ -18,9 +19,16 @@ export default function App() {
   const [otherTimer, setOtherTimer] = React.useState("")
   const [gameOver, setGameOver] = React.useState(false)
   const [name, setName] = React.useState("")
+  const [chooseGame, setChooseGame] = React.useState(null)
+  const [gameNumber, setGameNumber] = React.useState(1)
   const [timeIntervalID, setTimeIntervalID] = React.useState(0)
   const [highScore, setHighScore] = React.useState(
-    JSON.parse(localStorage.getItem("bestTime")) || [{score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}, {score: 100000, name: ""}]
+    JSON.parse(localStorage.getItem("greatTime")) || [
+                                                      [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
+                                                      [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
+                                                      [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
+                                                      [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}]
+                                                    ]
   )
   const words = possibleWords
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
@@ -95,12 +103,22 @@ export default function App() {
     })
   }
 
-  function addHighScore() {
-    if (otherTimer < highScore[19].score) {
+  function addHighScore(gameNumber) {
+    let highScoreIndex = null
+    if (chooseGame === 1) highScoreIndex = 0
+    else if (chooseGame === 3) highScoreIndex = 1
+    else if (chooseGame === 5) highScoreIndex = 2
+    else highScoreIndex = 3
+    if (otherTimer < highScore[highScoreIndex][19].score || highScore[highScoreIndex][19].score === null) {
       let array = [...highScore]
-      array.pop() 
-      array.push({score: otherTimer, name: name})
-      array.sort((a, b) => a.score - b.score)
+      array[highScoreIndex].pop() 
+      array[highScoreIndex].push({score: otherTimer, name: name})
+      array[highScoreIndex].sort((a, b) => a.score - b.score)
+      for (let i = 0; i < array[highScoreIndex].length; i++) 
+        if (array[highScoreIndex][0].score === null) {
+          let itemRemoved = array[highScoreIndex].shift()
+          array[highScoreIndex].push(itemRemoved)
+        }
       setHighScore(array)
     }
   }
@@ -161,17 +179,27 @@ export default function App() {
       }
     }
     if (wordEntered === word && boxes[position.rowIndex][0].color !== null) {
-      setMessage(`You win! The word is "${word}"`)
-      setTimeout(delayedGameOver, 1200)
-      clearInterval(timeIntervalID)
-      console.log(timer)
-      console.log(otherTimer)
-      addHighScore()
+      if (chooseGame === gameNumber) {
+        setMessage(`You win! The word is "${word}"`)
+        setTimeout(delayedGameOver, 1200)
+        clearInterval(timeIntervalID)
+        addHighScore(gameNumber)
+      }
+      else {
+        setGameNumber(prevGameNumber => prevGameNumber + 1)
+        setBoxes(allNewBoxes())
+        setMessage("")
+        setKeyColor(allNewKeys())
+        setPosition({rowIndex: 0, columnIndex: 0})
+        let randomNumber = Math.floor(Math.random() * possibleAnswers.length)
+        let theWord = possibleAnswers[randomNumber].toUpperCase()
+        setWord(theWord)
+      }
     }
   }
 
   React.useEffect(() => {
-    localStorage.setItem("bestTime", JSON.stringify(highScore))
+    localStorage.setItem("greatTime", JSON.stringify(highScore))
   }, [highScore])
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
@@ -180,12 +208,16 @@ export default function App() {
     <div>
       <h1 className="title">SA<span>VV</span>Y SPEED WORDS</h1>
       <div className="word-area">
-        {boxRowElements} 
-        <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
+        {boxRowElements}
+        <div className="gameInfo">
+          {hasStarted && <h2 className="wordCount">{gameNumber}</h2>}
+          <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
+        </div> 
       </div>
       <div className="message-area flex">
+        {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
         {name === "" && <Form setName={setName}/>}
-        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer}/>}
+        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
         <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
         <p className="message">{message}</p>
       </div>
