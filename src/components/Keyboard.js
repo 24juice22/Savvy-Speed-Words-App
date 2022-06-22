@@ -9,6 +9,50 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
     const keysMiddle = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const keysBottom = ["Z", "X", "C", "V", "B", "N", "M"]
   
+    const handleKeyboard = React.useCallback((event) => {
+        function insert(key) {
+            let newKey = key.toLowerCase()
+            if (event.key === newKey) {
+                if (hasStarted !== true) return
+                if (position.columnIndex > 4) return
+                const board = [...boxes]
+                board[position.rowIndex][position.columnIndex].value = key
+                setBoxes(board)
+                setPosition(prevPosition => {
+                    return {
+                        ...prevPosition, 
+                        columnIndex: prevPosition.columnIndex + 1
+                    }
+                })
+            } 
+        }
+
+        if (event.key === "Enter") {
+            enterWord()
+        } 
+        else if (event.key === "Backspace" || event.key === "Delete") {
+            deleteLetter()
+        }
+        else {
+            keysTop.forEach((key) => {
+                insert(key)
+            })
+            keysMiddle.forEach((key) => {
+                insert(key)
+             })
+             keysBottom.forEach((key) => {
+                insert(key)
+             })
+        }
+    })
+
+    React.useEffect(() => {
+        document.addEventListener("keydown", handleKeyboard)
+        return () => {
+            document.removeEventListener("keydown", handleKeyboard)
+        }
+    }, [handleKeyboard])
+
     function deleteLetter() {
         if (position.columnIndex === 0) return 
         newBoard[position.rowIndex][position.columnIndex - 1].value = ""
@@ -44,7 +88,7 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
     }
 
     return (
-        <div className="keyboard">
+        <div className="keyboard" onKeyDown={handleKeyboard}>
             <div className="flex keyboard-top">
                 {keysTop.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor} />)}
             </div>
