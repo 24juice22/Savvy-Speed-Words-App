@@ -210,7 +210,7 @@ export default function App() {
       <div className="word-area">
         {boxRowElements}
         <div className="gameInfo">
-          {hasStarted && <h2 className="wordCount">{gameNumber}</h2>}
+          {hasStarted && <h2 className="wordCount">{gameNumber}/{chooseGame}</h2>}
           <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
         </div> 
       </div>
