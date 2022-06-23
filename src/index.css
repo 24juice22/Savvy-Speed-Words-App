@@ -98,7 +98,7 @@ body {
   margin-top: 0;
 }
 
-.highScore__list > li {
+.highScore__list-item {
   padding: .5rem;
   color: white;
   font-size: 2rem;

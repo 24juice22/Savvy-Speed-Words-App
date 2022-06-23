@@ -28,10 +28,10 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
             secondColumn.push(array[i])
     }
     
-    let scoreName = firstColumn.map(scoreInstance => <li style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreList = firstColumn.map(scoreInstance => <li style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>)
-    let scoreSecondName = secondColumn.map(scoreInstance => <li style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreSecondList = secondColumn.map(scoreInstance => <li style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>) 
+    let scoreName = firstColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
+    let scoreList = firstColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>)
+    let scoreSecondName = secondColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
+    let scoreSecondList = secondColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>) 
 
     function newGame() {
         setGameOver(prevGameOver => !prevGameOver)
