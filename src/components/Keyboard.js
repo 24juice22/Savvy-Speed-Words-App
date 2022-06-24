@@ -96,9 +96,9 @@ export default function Keyboard({boxes, setBoxes, position, setPosition, words,
                 {keysMiddle.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor}/>)}
             </div>
             <div className="flex keyboard-bottom">
-                <div className="key key-special key-enter" onClick={enterWord}>ENTER</div>
+                <div className="key key-special key-enter" onClick={enterWord}>ENT</div>
                 {keysBottom.map(letter => <Key hasStarted={hasStarted} position={position} setPosition={setPosition} setBoxes={setBoxes} boxes={boxes} keyValue={letter} key={letter} keyColor={keyColor}/>)}
-                <div className="key key-special key-delete" onClick={deleteLetter} >DELETE</div>
+                <div className="key key-special key-delete" onClick={deleteLetter} >DEL</div>
             </div>
         </div> 
     )
