@@ -65,24 +65,27 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 8rem;
   background-color: black;
-  border: 10px solid white;
-  box-shadow: 4px 4px 100vw cyan;
   z-index: 1;
-  width: 80vw;
-  height: 60vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .form__title {
   font-size: 4rem;
   color: yellow;
   margin-bottom: 0;
+  text-align: center;
+  padding: 0 1.1rem;
 }
 
 .form > p {
   color: white;
+  font-size: 2rem;
+}
+
+.form__btn {
+  margin-top: 2rem;
 }
 
 .highScore {

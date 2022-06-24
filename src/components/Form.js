@@ -11,7 +11,7 @@ export default function Form({setName}) {
             <h2 className="form__title">PLEASE ENTER YOUR NAME</h2>
             <p>(Maximum of 14 Characters)</p>
             <input className="form__input" type="text" maxLength="14"/>
-            <input className="btn" type="submit" />
+            <input className="btn form__btn" type="submit" value="SUBMIT" />
         </form>
     )
 }
