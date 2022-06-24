@@ -83,19 +83,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 8rem;
-  background-color: rgb(10, 10, 10);
-  border: 10px solid white;
-  box-shadow: 4px 4px 100vw cyan;
+  justify-content:space-evenly;
+  background-color: black;
   z-index: 100;
-  width: 80vw;
-  height: 80vh; 
+  width: 100vw;
+  height: 100vh; 
 }
 
 .highScore__title {
   color: cyan;
-  font-size: 5rem;
+  font-size: 4rem;
   margin-top: .75rem;
   margin-bottom: 1rem;
 }
@@ -110,29 +107,39 @@ body {
 .highScore__list {
   display: flex;
   flex-direction: column;
-  margin-bottom: .5rem;
+  margin-bottom: 0;
   margin-top: 0;
+  padding-left: 3rem;
+  min-width: 11rem;
 }
 
 .highScore__list-item {
-  padding: .5rem;
+  padding: .1rem;
   color: white;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
+
+.highScore__list-name {
+  width: 17.5rem;
+}
+
+
 
 .highScore__list-score {
   list-style-type: none;
 }
 
 .highScore__column {
-  padding: 0 3rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .highScore__your-score {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: rgb(5, 253, 5);
-  margin: 1rem 1rem 2rem;
+  margin: 1rem 1rem 1rem;
 }
 
 .highScore__your-score > span {
@@ -140,11 +147,116 @@ body {
   margin-right: 1.5rem;
 }
 
-.highScore__btn {
-  margin: 0 3rem;
-  padding: 1rem 4rem;
-  font-size: 2.5rem;
+.highScore__buttons {
+  margin-bottom: 1rem;
 }
+
+.highScore__btn {
+  margin: 0 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 2.5rem;
+  min-width: 6rem;
+}
+
+@media screen and (min-width: 768px) {
+  .highScore__title {
+    font-size: 6rem;
+  }
+  
+  .highScore__subtitle {
+    font-size: 4rem;
+  }
+
+  .highScore__columns {
+    display: flex;
+  }
+
+  .highScore__column {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .highScore__column:first-of-type {
+    margin-right: 2.5rem;
+  }
+  
+  .highScore__list-item {
+    padding: .2rem;
+    font-size: 2rem;
+  }
+  
+  .highScore__list-name {
+    width: 17.5rem;
+  }
+  
+  .highScore__list-score {
+    list-style-type: none;
+  }
+  
+  .highScore__your-score {
+    font-size: 3.5rem;
+    color: rgb(5, 253, 5);
+    margin: 1rem 1rem 1rem;
+  }
+  
+  .highScore__buttons {
+    margin-bottom: 1rem;
+  }
+  
+  .highScore__btn {
+    margin: 0 2rem;
+    padding: 1.5rem 3.5rem;
+    font-size: 2.5rem;
+    min-width: 10rem;
+  }
+}
+
+@media screen and (max-height: 415px) {
+  .highScore__title {
+    font-size: 3.5rem;
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+  }
+  
+  .highScore__subtitle {
+    font-size: 2.2rem;
+    margin-bottom: .25rem;
+  }
+
+  .highScore__columns {
+    display: flex;
+  }
+
+  .highScore__column {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .highScore__column:first-of-type {
+    margin-right: 1.25rem;
+  }
+  
+  .highScore__list-item {
+    font-size: 1.5rem;
+  }
+  
+  .highScore__list-name {
+    width: 13rem;
+  }
+  
+  .highScore__your-score {
+    font-size: 2.25rem;
+  }
+  
+  .highScore__btn {
+    font-size: 2.5rem;
+    min-width: 9rem;
+    padding: .7rem 1.5rem;
+  }
+}
+
 
 
 /* CHOOSE GAME */

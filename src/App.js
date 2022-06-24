@@ -206,7 +206,7 @@ export default function App() {
 
   return (
     <div>
-      {name !== "" && <div className = "main">
+      {name !== "" && !gameOver && <div className = "main">
         <h1 className="main__title">SA<span>VV</span>Y SPEED WORDS</h1>
         <div className="word-area">
           {boxRowElements}
@@ -216,7 +216,6 @@ export default function App() {
           </div> 
         </div>
         <div className="message-area flex">
-          {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
           <button className="btn main__btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
           <p className="message">{message}</p>
         </div>
@@ -224,6 +223,7 @@ export default function App() {
       </div>}
       {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
       {name === "" && chooseGame !== null && <Form setName={setName}/>}
+      {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
     </div>
   )
 }

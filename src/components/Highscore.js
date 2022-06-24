@@ -28,10 +28,10 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
             secondColumn.push(array[i])
     }
     
-    let scoreName = firstColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreList = firstColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>)
-    let scoreSecondName = secondColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreSecondList = secondColumn.map(scoreInstance => <li className="highScore__list-item" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>) 
+    let scoreName = firstColumn.map(scoreInstance => <li className="highScore__list-item highScore__list-name" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
+    let scoreList = firstColumn.map(scoreInstance => <li className="highScore__list-item highScore__list-score" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>)
+    let scoreSecondName = secondColumn.map(scoreInstance => <li className="highScore__list-item highScore__list-name" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
+    let scoreSecondList = secondColumn.map(scoreInstance => <li className="highScore__list-item highScore__list-score" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>) 
 
     function newGame() {
         setGameOver(prevGameOver => !prevGameOver)
@@ -68,7 +68,7 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
         <div className="highScore">
             <h2 className="highScore__title">Fastest Times</h2>
             <h3 className="highScore__subtitle">{chooseGame} WORD</h3>
-            <div className="flex">
+            <div className="highScore__columns">
                 <div className="flex highScore__column">
                     <ol className="highScore__list">
                         {scoreName}
@@ -87,7 +87,7 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
                 </div>
             </div>
             <h3 className="highScore__your-score"><span>Your Time:</span>{timer}</h3>
-            <div className="highScore__buttons">
+            <div className="highScore__buttons" >
                 <button className="btn btn-1 highScore__btn" onClick={buttonOneClick}>1</button>
                 <button className="btn btn-3 highScore__btn" onClick={buttonThreeClick}>3</button>
                 <button className="btn btn-5 highScore__btn" onClick={buttonFiveClick}>5</button>
