@@ -206,22 +206,24 @@ export default function App() {
 
   return (
     <div>
-      <h1 className="title">SA<span>VV</span>Y SPEED WORDS</h1>
-      <div className="word-area">
-        {boxRowElements}
-        <div className="gameInfo">
-          {hasStarted && <h2 className="wordCount">{gameNumber}/{chooseGame}</h2>}
-          <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
-        </div> 
-      </div>
-      <div className="message-area flex">
-        {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
-        {name === "" && <Form setName={setName}/>}
-        {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
-        <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
-        <p className="message">{message}</p>
-      </div>
-      <Keyboard gameOver={gameOver} delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      {name !== "" && <div className = "main">
+        <h1 className="title">SA<span>VV</span>Y SPEED WORDS</h1>
+        <div className="word-area">
+          {boxRowElements}
+          <div className="gameInfo">
+            {hasStarted && <h2 className="wordCount">{gameNumber}/{chooseGame}</h2>}
+            <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
+          </div> 
+        </div>
+        <div className="message-area flex">
+          {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
+          <button className="btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
+          <p className="message">{message}</p>
+        </div>
+        <Keyboard gameOver={gameOver} delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+      </div>}
+      {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
+      {name === "" && chooseGame !== null && <Form setName={setName}/>}
     </div>
   )
 }

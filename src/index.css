@@ -15,6 +15,32 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  background-color: yellow;
+  border: none;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.grid {
+  display: grid;
+}
+
+.grid--cols-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .title {
@@ -32,10 +58,6 @@ body {
   text-shadow: 3px 3px 3px var(--color-blue);
   font-family: 'Marck Script', cursive;
   letter-spacing: 2px;
-}
-
-.word-area {
-  position:relative;
 }
 
 .form {
@@ -128,34 +150,208 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 8rem;
+  justify-content: center;
   background-color: rgb(10, 10, 10);
   color: white;
-  border: 10px solid white;
-  box-shadow: 4px 4px 100vw var(--color-pink);
   z-index: 100;
-  width: 80vw;
-  height: 80vh; 
+  width: 100vw;
+  height: 100vh; 
 }
 
 .chooseGame__title {
   color: cyan;
-  font-size: 5rem;
+  font-size: 3rem;
+  text-align: center;
+  padding: 1rem;
+  margin: 0.5rem;
 }
 
 .chooseGame__directions-title {
-  font-size: 3.5rem;
+  font-size: 2.1rem;
   color: var(--color-pink);
-  padding: 0 12rem;
   text-align: center;
+  margin-top: 2rem;
+  padding: 0 2.5rem;
 }
 
 .chooseGame__directions-text {
-  padding: 0 12rem;
   text-align: center;
-  font-size: 2.1rem;
-  line-height: 3rem;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  margin-top: 0;
+  padding: 0 2.5rem;
+}
+
+.chooseGame__buttons {
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.chooseGame__btn {
+  padding: .75rem 2.5rem;
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+.btn-3 {
+  background-color: rgb(5, 253, 5);
+}
+
+.btn-5 {
+  background-color: var(--color-blue);
+}
+
+.btn-10 {
+  background-color: var(--color-pink);
+}
+
+@media screen and (min-width: 768px) {
+  .chooseGame {
+    justify-content: center;
+  }
+  
+  .chooseGame__title {
+    color: cyan;
+    font-size: 5rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem;
+  }
+  
+  .chooseGame__directions-title {
+    font-size: 3rem;
+    color: var(--color-pink);
+    text-align: center;
+    padding: 0 4rem;
+    margin-bottom: 3rem;
+  }
+  
+  .chooseGame__directions-text {
+    text-align: center;
+    font-size: 2.2rem;
+    line-height: 3rem;
+    margin-top: 0;
+    padding: 0 4rem;
+  }
+  
+  .chooseGame__buttons {
+    margin-top: 1rem;
+    gap: 2rem;
+  }
+  
+  .chooseGame__btn {
+    padding: .5rem 5rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0 1rem;
+  }
+
+  .grid {
+    display: unset;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .chooseGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(10, 10, 10);
+    color: white;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh; 
+  }
+  
+  .chooseGame__title {
+    color: cyan;
+    font-size: 5.5rem;
+  }
+  
+  .chooseGame__directions-title {
+    font-size: 3.5rem;
+    color: var(--color-pink);
+    padding: 0 30rem;
+    text-align: center;
+    min-width: 80rem;
+  }
+  
+  .chooseGame__directions-text {
+    padding: 0 30rem;
+    text-align: center;
+    font-size: 2.1rem;
+    line-height: 3rem;
+    min-width: 80rem;
+  }
+  
+  .chooseGame__btn {
+    margin: 2rem;
+    padding: .75rem 5rem;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 5rem;
+  }
+
+  .grid {
+    display: unset;
+  }
+  
+}
+
+@media screen and (max-height: 415px) {
+  .chooseGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(10, 10, 10);
+    color: white;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh; 
+  }
+  
+  .chooseGame__title {
+    color: cyan;
+    font-size: 3rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .chooseGame__directions-title {
+    font-size: 2.1rem;
+    color: var(--color-pink);
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 8rem;
+  }
+  
+  .chooseGame__directions-text {
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    margin-top: 0;
+    padding: 0 8rem;
+  }
+  
+  .chooseGame__buttons {
+    margin-top: 1rem;
+    gap: 2rem;
+  }
+  
+  .chooseGame__btn {
+    padding: .75rem 2.5rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0 1rem;
+    width: 9rem;
+  }
+
+  .grid {
+    display: unset;
+  }
 }
 
 .gameInfo {
@@ -227,42 +423,6 @@ body {
 .flex {
   display: flex;
   justify-content: center;
-}
-
-.btn {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  background-color: yellow;
-  border: none;
-  color: black;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 0.75rem 2rem;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-}
-
-.chooseGame__btn {
-  margin: 6rem;
-  padding: .75rem 5rem;
-  font-size: 3.5rem;
-  font-weight: bold;
-}
-
-.btn-3 {
-  background-color: rgb(5, 253, 5);
-}
-
-.btn-5 {
-  background-color: var(--color-blue);
-}
-
-.btn-10 {
-  background-color: var(--color-pink);
 }
 
 .highScore__btn {

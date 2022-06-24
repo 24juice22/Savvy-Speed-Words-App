@@ -26,7 +26,7 @@ export default function Choosegame({setChooseGame}) {
                 EXAMPLE: If you choose "3", once you correctly guess the first word, the board will reset and you will 
                     have a new word to guess. The timer will continue until you have correctly guessed all 3 words (or until you fail a word, then you lose!)
             </p>
-            <div className="chooseGame__buttons">
+            <div className="chooseGame__buttons grid grid--cols-2">
                 <button className="btn chooseGame__btn btn-1" onClick={buttonOneClick}>1</button>
                 <button className="btn chooseGame__btn btn-3" onClick={buttonThreeClick}>3</button>
                 <button className="btn chooseGame__btn btn-5" onClick={buttonFiveClick}>5</button>
