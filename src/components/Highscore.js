@@ -15,6 +15,7 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
             let seconds = Math.floor((item.score % (1000 * 60)) / 1000);
             let milliseconds = Math.floor((item.score % 10000) / 100);
             let display = minutes + "m " + seconds + "." + milliseconds + "s ";
+
             return {score: display, name: item.name}
         } 
     })
@@ -44,23 +45,9 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
         setGameNumber(1)
     }
     
-    function buttonOneClick() {
-        setChooseGame(1)
-        newGame()
-    }
-
-    function buttonThreeClick() {
-        setChooseGame(3)
-        newGame()
-    }
-
-    function buttonFiveClick() {
-        setChooseGame(5)
-        newGame()
-    }
-
-    function buttonTenClick() {
-        setChooseGame(10)
+    function buttonChooseGameClick(event) {
+        let numberOfWordsChosen = parseInt(event.target.textContent)
+        setChooseGame(numberOfWordsChosen)
         newGame()
     }
 
@@ -88,10 +75,10 @@ export default function Highscore({highScore, message, word, otherTimer, setGame
             </div>
             <h3 className="highScore__your-score"><span>Your Time:</span>{timer}</h3>
             <div className="highScore__buttons" >
-                <button className="btn btn-1 highScore__btn" onClick={buttonOneClick}>1</button>
-                <button className="btn btn-3 highScore__btn" onClick={buttonThreeClick}>3</button>
-                <button className="btn btn-5 highScore__btn" onClick={buttonFiveClick}>5</button>
-                <button className="btn btn-10 highScore__btn" onClick={buttonTenClick}>10</button>
+                <button className="btn btn-1 highScore__btn" onClick={buttonChooseGameClick}>1</button>
+                <button className="btn btn-3 highScore__btn" onClick={buttonChooseGameClick}>3</button>
+                <button className="btn btn-5 highScore__btn" onClick={buttonChooseGameClick}>5</button>
+                <button className="btn btn-10 highScore__btn" onClick={buttonChooseGameClick}>10</button>
             </div>
         </div>
     )
