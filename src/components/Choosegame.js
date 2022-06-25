@@ -2,20 +2,9 @@ import React from "react"
 
 export default function Choosegame({setChooseGame}) {
     
-    function buttonOneClick() {
-        setChooseGame(1)
-    }
-
-    function buttonThreeClick() {
-        setChooseGame(3)
-    }
-
-    function buttonFiveClick() {
-        setChooseGame(5)
-    }
-
-    function buttonTenClick() {
-        setChooseGame(10)
+    function buttonChooseGameClick(event) {
+        let numberClicked = parseInt(event.target.textContent)
+        setChooseGame(numberClicked)
     }
 
     return (
@@ -28,10 +17,10 @@ export default function Choosegame({setChooseGame}) {
                     have a new word to guess. The timer will continue until you have correctly guessed all 3 words (or until you fail a word, then you lose!)
             </p>
             <div className="chooseGame__buttons grid grid--cols-2">
-                <button className="btn chooseGame__btn btn-1" onClick={buttonOneClick}>1</button>
-                <button className="btn chooseGame__btn btn-3" onClick={buttonThreeClick}>3</button>
-                <button className="btn chooseGame__btn btn-5" onClick={buttonFiveClick}>5</button>
-                <button className="btn chooseGame__btn btn-10" onClick={buttonTenClick}>10</button>
+                <button className="btn chooseGame__btn btn-1" onClick={buttonChooseGameClick}>1</button>
+                <button className="btn chooseGame__btn btn-3" onClick={buttonChooseGameClick}>3</button>
+                <button className="btn chooseGame__btn btn-5" onClick={buttonChooseGameClick}>5</button>
+                <button className="btn chooseGame__btn btn-10" onClick={buttonChooseGameClick}>10</button>
             </div>
         </div>
     )
