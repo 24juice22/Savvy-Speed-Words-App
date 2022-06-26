@@ -3,7 +3,7 @@ import Boxrow from "./components/Boxrow"
 import Keyboard from "./components/Keyboard"
 import possibleAnswers from "./possibleAnswers"
 import possibleWords from "./possibleWords"
-import Highscore from "./components/Highscore"
+import Lowtime from "./components/Lowtime"
 import Form from "./components/Form"
 import Choosegame from "./components/Choosegame"
 
@@ -22,7 +22,7 @@ export default function App() {
   const [chooseGame, setChooseGame] = React.useState(null)
   const [gameNumber, setGameNumber] = React.useState(1)
   const [timeIntervalID, setTimeIntervalID] = React.useState(0)
-  const [highScore, setHighScore] = React.useState(
+  const [lowTime, setLowTime] = React.useState(
     JSON.parse(localStorage.getItem("greatTime")) || [
                                                       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
                                                       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
@@ -103,23 +103,23 @@ export default function App() {
     })
   }
 
-  function addHighScore(gameNumber) {
-    let highScoreIndex = null
-    if (chooseGame === 1) highScoreIndex = 0
-    else if (chooseGame === 3) highScoreIndex = 1
-    else if (chooseGame === 5) highScoreIndex = 2
-    else highScoreIndex = 3
-    if (otherTimer < highScore[highScoreIndex][19].score || highScore[highScoreIndex][19].score === null) {
-      let array = [...highScore]
-      array[highScoreIndex].pop() 
-      array[highScoreIndex].push({score: otherTimer, name: name})
-      array[highScoreIndex].sort((a, b) => a.score - b.score)
-      for (let i = 0; i < array[highScoreIndex].length; i++) 
-        if (array[highScoreIndex][0].score === null) {
-          let itemRemoved = array[highScoreIndex].shift()
-          array[highScoreIndex].push(itemRemoved)
+  function addLowTime(gameNumber) {
+    let lowTimeIndex = null
+    if (chooseGame === 1) lowTimeIndex = 0
+    else if (chooseGame === 3) lowTimeIndex = 1
+    else if (chooseGame === 5) lowTimeIndex = 2
+    else lowTimeIndex = 3
+    if (otherTimer < lowTime[lowTimeIndex][19].score || lowTime[lowTimeIndex][19].score === null) {
+      let array = [...lowTime]
+      array[lowTimeIndex].pop() 
+      array[lowTimeIndex].push({score: otherTimer, name: name})
+      array[lowTimeIndex].sort((a, b) => a.score - b.score)
+      for (let i = 0; i < array[lowTimeIndex].length; i++) 
+        if (array[lowTimeIndex][0].score === null) {
+          let itemRemoved = array[lowTimeIndex].shift()
+          array[lowTimeIndex].push(itemRemoved)
         }
-      setHighScore(array)
+      setLowTime(array)
     }
   }
 
@@ -183,7 +183,7 @@ export default function App() {
         setMessage(`You win! The word is "${word}"`)
         setTimeout(delayedGameOver, 1200)
         clearInterval(timeIntervalID)
-        addHighScore(gameNumber)
+        addLowTime(gameNumber)
       }
       else {
         setGameNumber(prevGameNumber => prevGameNumber + 1)
@@ -199,8 +199,8 @@ export default function App() {
   }
 
   React.useEffect(() => {
-    localStorage.setItem("greatTime", JSON.stringify(highScore))
-  }, [highScore])
+    localStorage.setItem("greatTime", JSON.stringify(lowTime))
+  }, [lowTime])
 
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
 
@@ -223,7 +223,7 @@ export default function App() {
       </div>}
       {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
       {name === "" && chooseGame !== null && <Form setName={setName}/>}
-      {gameOver && <Highscore highScore={highScore} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
+      {gameOver && <Lowtime lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
     </div>
   )
 }
