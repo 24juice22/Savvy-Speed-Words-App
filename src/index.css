@@ -528,7 +528,7 @@ body {
   }
 }
 
-.gameInfo {
+.main__game-info {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -536,7 +536,7 @@ body {
   margin-top: .5rem;
 }
 
-.wordCount {
+.main__word-count {
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
@@ -550,7 +550,7 @@ body {
 }
 
 .time-finished {
-  color: rgb(5, 253, 5);
+  color: var(--color-green);
   font-size: 3rem;
 }
 

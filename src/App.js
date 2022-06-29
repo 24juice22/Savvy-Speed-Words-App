@@ -28,7 +28,7 @@ export default function App() {
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}]
-                                                    ]
+    ]
   )
   const words = possibleWords
   let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
@@ -208,10 +208,10 @@ export default function App() {
     <div>
       {name !== "" && !gameOver && <div className = "main">
         <h1 className="main__title">SA<span>VV</span>Y SPEED WORDS</h1>
-        <div className="word-area">
+        <div className="main__word-area">
           {boxRowElements}
-          <div className="gameInfo">
-            {hasStarted && <h2 className="wordCount">{gameNumber}/{chooseGame}</h2>}
+          <div className="main__game-info">
+            {hasStarted && <h2 className="main__word-count">{gameNumber}/{chooseGame}</h2>}
             <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
           </div> 
         </div>
