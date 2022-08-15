@@ -1,5 +1,6 @@
 {
   "name": "wordle-app",
+  "homepage" : "https://24juice22.github.io/Savvy-Speed-Words-App/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
