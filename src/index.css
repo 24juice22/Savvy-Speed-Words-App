@@ -79,6 +79,47 @@ body {
   margin-top: 2rem;
 }
 
+/* Buttons */
+.chooseGame__buttons {
+  margin-bottom: 1rem;
+}
+
+.chooseGame__btn {
+  margin: 0 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 2.5rem;
+  min-width: 6rem;
+}
+
+.btn-3 {
+  background-color: var(--color-green);
+}
+
+.btn-5 {
+  background-color: var(--color-blue);
+}
+
+.btn-10 {
+  background-color: var(--color-pink);
+}
+
+@media screen and (min-width: 768px) {
+  .chooseGame__btn {
+    margin: 0 2rem;
+    padding: 1.5rem 3.5rem;
+    min-width: 10rem;
+  }
+}
+
+@media screen and (max-height: 415px) {
+  .chooseGame__btn {
+    min-width: 9rem;
+    padding: .7rem 1.5rem;
+  }
+}
+
+
+
 /* LOW TIME */
 .lowTime {
   display: flex;
@@ -148,17 +189,6 @@ body {
   margin-right: 1.5rem;
 }
 
-.lowTime__buttons {
-  margin-bottom: 1rem;
-}
-
-.lowTime__btn {
-  margin: 0 1rem;
-  padding: 1rem 1.5rem;
-  font-size: 2.5rem;
-  min-width: 6rem;
-}
-
 @media screen and (min-width: 768px) {
   .lowTime__title {
     font-size: 6rem;
@@ -200,17 +230,6 @@ body {
     color: var(--color-green);
     margin: 1rem 1rem 1rem;
   }
-  
-  .lowTime__buttons {
-    margin-bottom: 1rem;
-  }
-  
-  .lowTime__btn {
-    margin: 0 2rem;
-    padding: 1.5rem 3.5rem;
-    font-size: 2.5rem;
-    min-width: 10rem;
-  }
 }
 
 @media screen and (max-height: 415px) {
@@ -249,12 +268,6 @@ body {
   
   .lowTime__your-score {
     font-size: 2.25rem;
-  }
-  
-  .lowTime__btn {
-    font-size: 2.5rem;
-    min-width: 9rem;
-    padding: .7rem 1.5rem;
   }
 }
 
@@ -314,29 +327,6 @@ body {
   padding: 0 2.5rem;
 }
 
-.chooseGame__buttons {
-  margin-top: 1rem;
-  gap: 2rem;
-}
-
-.chooseGame__btn {
-  padding: .75rem 2.5rem;
-  font-size: 3.5rem;
-  font-weight: bold;
-}
-
-.btn-3 {
-  background-color: var(--color-green);
-}
-
-.btn-5 {
-  background-color: var(--color-blue);
-}
-
-.btn-10 {
-  background-color: var(--color-pink);
-}
-
 @media screen and (min-width: 768px) {
   .chooseGame {
     justify-content: center;
@@ -367,22 +357,6 @@ body {
     font-size: 2.2rem;
     line-height: 3rem;
     padding: 0 4rem;
-  }
-  
-  .chooseGame__buttons {
-    margin-top: 1rem;
-    gap: 2rem;
-  }
-  
-  .chooseGame__btn {
-    padding: .5rem 5rem;
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin: 0 1rem;
-  }
-
-  .grid {
-    display: unset;
   }
 }
 
@@ -415,18 +389,6 @@ body {
     line-height: 3rem;
     min-width: 80rem;
   }
-  
-  .chooseGame__btn {
-    margin: 2rem;
-    padding: .75rem 5rem;
-    font-size: 3rem;
-    margin-bottom: 5rem;
-  }
-
-  .grid {
-    display: unset;
-  }
-  
 }
 
 @media screen and (max-height: 415px) {
@@ -444,15 +406,6 @@ body {
   
   .chooseGame__directions-text {
     padding: 0 8rem;
-  }
-
-  .chooseGame__btn {
-    padding: .2rem 2.5rem;
-    margin: 0 1rem;
-  }
-
-  .grid {
-    display: unset;
   }
 }
 
