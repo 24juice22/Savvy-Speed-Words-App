@@ -6,6 +6,7 @@ import possibleWords from "./possibleWords"
 import Lowtime from "./components/Lowtime"
 import Form from "./components/Form"
 import Choosegame from "./components/Choosegame"
+import { SavvyContext } from "./contexts/SavvyContext"
 
 export default function App() {
   const [word, setWord] = React.useState("")
@@ -217,25 +218,27 @@ export default function App() {
   const startButtonDisplay = {display: hasStarted ? "none" : "block"}
 
   return (
-    <div>
-      {name !== "" && !gameOver && <div className = "main">
-        <h1 className="main__title">SA<span>VV</span>Y SPEED WORDS</h1>
-        <div className="main__word-area">
-          {boxRowElements}
-          <div className="main__game-info">
-            {hasStarted && <h2 className="main__word-count">{gameNumber}/{chooseGame}</h2>}
-            <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
-          </div> 
-        </div>
-        <div className="message-area flex">
-          <button className="btn main__btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
-          <p className="message">{message}</p>
-        </div>
-        <Keyboard gameOver={gameOver} delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
-      </div>}
-      {chooseGame === null && <Choosegame setChooseGame={setChooseGame} name={name}/>}
-      {name === "" && chooseGame !== null && <Form setName={setName}/>}
-      {gameOver && <Lowtime numberOfGamesIndex={numberOfGamesIndex} displayTime={displayTime} lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
-    </div>
+    <SavvyContext.Provider value={{ setGameOver, setBoxes, setHasStarted, setMessage, setKeyColor, setTimer, setPosition, setGameNumber, allNewBoxes, allNewKeys, setChooseGame, name }}>
+      <div>
+        {name !== "" && !gameOver && <div className = "main">
+          <h1 className="main__title">SA<span>VV</span>Y SPEED WORDS</h1>
+          <div className="main__word-area">
+            {boxRowElements}
+            <div className="main__game-info">
+              {hasStarted && <h2 className="main__word-count">{gameNumber}/{chooseGame}</h2>}
+              <div className={gameOver ? "time time-finished" : "time"}>{timer}</div>
+            </div> 
+          </div>
+          <div className="message-area flex">
+            <button className="btn main__btn" style={startButtonDisplay} onClick={startButtonClick}>START</button>
+            <p className="message">{message}</p>
+          </div>
+          <Keyboard gameOver={gameOver} delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
+        </div>}
+        {chooseGame === null && <Choosegame setChooseGame={setChooseGame} name={name}/>}
+        {name === "" && chooseGame !== null && <Form setName={setName}/>}
+        {gameOver && <Lowtime numberOfGamesIndex={numberOfGamesIndex} displayTime={displayTime} lowTime={lowTime} timer={timer} name={name} chooseGame={chooseGame} />}
+      </div>
+    </SavvyContext.Provider>
   )
 }
