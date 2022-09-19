@@ -2,12 +2,8 @@ import React from "react"
 import Buttons from "./Buttons"
 import LowTimeColumn from "./LowTimeColumn"
 
-export default function Lowtime({displayTime, lowTime, setGameOver, setBoxes, allNewBoxes, setHasStarted, setMessage, setKeyColor, allNewKeys, setTimer, setPosition, timer, name, setGameNumber, setChooseGame, chooseGame}) {
-    let arrayIndex = null
-    if (chooseGame === 1) arrayIndex = 0
-    else if (chooseGame === 3) arrayIndex = 1
-    else if (chooseGame === 5) arrayIndex = 2
-    else arrayIndex = 3
+export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, setGameOver, setBoxes, allNewBoxes, setHasStarted, setMessage, setKeyColor, allNewKeys, setTimer, setPosition, timer, name, setGameNumber, setChooseGame, chooseGame}) {
+    let arrayIndex = numberOfGamesIndex(chooseGame);
 
     let array = lowTime[arrayIndex].map(item => {
         if (item.score === null)
@@ -23,11 +19,31 @@ export default function Lowtime({displayTime, lowTime, setGameOver, setBoxes, al
         else
             secondColumn.push(array[i]);
     }
-    
-    let scoreName = firstColumn.map(scoreInstance => <li className="lowTime__list-item lowTime__list-name" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreList = firstColumn.map(scoreInstance => <li className="lowTime__list-item lowTime__list-score" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>)
-    let scoreSecondName = secondColumn.map(scoreInstance => <li className="lowTime__list-item lowTime__list-name" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.name} </li>)
-    let scoreSecondList = secondColumn.map(scoreInstance => <li className="lowTime__list-item lowTime__list-score" style={{color: scoreInstance.score === timer && name === scoreInstance.name? "rgb(5, 253, 5)" : "white"  }}>{scoreInstance.score} </li>) 
+
+    function lowTimeColors(value) {
+       return {color: value.score === timer && name === value.name ? "rgb(5, 253, 5)" : "white"}
+    }
+
+    let scoreName = firstColumn.map(scoreInstance => {
+        return  <li className="lowTime__list-item lowTime__list-name" style={lowTimeColors(scoreInstance)}>
+                    {scoreInstance.name} 
+                </li>
+    })
+    let scoreList = firstColumn.map(scoreInstance => {
+        return  <li className="lowTime__list-item lowTime__list-score" style={lowTimeColors(scoreInstance)}>
+                    {scoreInstance.score} 
+                </li>
+    })
+    let scoreSecondName = secondColumn.map(scoreInstance => {
+        return  <li className="lowTime__list-item lowTime__list-name" style={lowTimeColors(scoreInstance)}>
+                    {scoreInstance.name} 
+                </li>
+    })
+    let scoreSecondList = secondColumn.map(scoreInstance => {
+        return  <li className="lowTime__list-item lowTime__list-score" style={lowTimeColors(scoreInstance)}>
+                    {scoreInstance.score} 
+                </li>
+    }) 
 
     function newGame() {
         setGameOver(prevGameOver => !prevGameOver)
