@@ -2,7 +2,9 @@ import React from "react"
 import Buttons from "./Buttons"
 import LowTimeColumn from "./LowTimeColumn"
 
-export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, setGameOver, setBoxes, allNewBoxes, setHasStarted, setMessage, setKeyColor, allNewKeys, setTimer, setPosition, timer, name, setGameNumber, setChooseGame, chooseGame}) {
+export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, timer, name, chooseGame}) {
+    
+    /////////////// Create Two Arrays of the Lowest Scores //////////////////
     let arrayIndex = numberOfGamesIndex(chooseGame);
 
     let array = lowTime[arrayIndex].map(item => {
@@ -20,6 +22,7 @@ export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, setGa
             secondColumn.push(array[i]);
     }
 
+    //////////// Map Over Arrays to Render List Items of Names and Scores ///////////
     function lowTimeColors(value) {
        return {color: value.score === timer && name === value.name ? "rgb(5, 253, 5)" : "white"}
     }
@@ -45,17 +48,6 @@ export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, setGa
                 </li>
     }) 
 
-    function newGame() {
-        setGameOver(prevGameOver => !prevGameOver)
-        setBoxes(allNewBoxes())
-        setHasStarted(prevHasStarted => !prevHasStarted)
-        setMessage("")
-        setKeyColor(allNewKeys())
-        setTimer("")
-        setPosition({rowIndex: 0, columnIndex: 0})
-        setGameNumber(1)
-    }
-
     return (
         <div className="lowTime">
             <h2 className="lowTime__title">Fastest Times</h2>
@@ -65,7 +57,7 @@ export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, setGa
                 <LowTimeColumn name={scoreSecondName} score={scoreSecondList} start={"11"}/>
             </div>
             <h3 className="lowTime__your-score"><span>Your Time:</span>{timer}</h3>
-            <Buttons setChooseGame={setChooseGame} newGame={newGame} name={name}/>
+            <Buttons />
         </div>
     )
 }
