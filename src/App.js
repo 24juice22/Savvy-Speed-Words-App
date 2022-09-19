@@ -30,12 +30,12 @@ export default function App() {
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}]
     ]
   )
-  const words = possibleWords
-  let wordEntered = boxes[position.rowIndex].map(object => object.value).join("")
+  const words = possibleWords;
+  let wordEntered = boxes[position.rowIndex].map(object => object.value).join("");
 
-  let hashOfWord = {}
-  let pinkHash = {}
-  let blueHash = {}
+  let hashOfWord = {};
+  let pinkHash = {};
+  let blueHash = {};
 
   function allNewBoxes() {
     const newBoxes = [
@@ -67,16 +67,27 @@ export default function App() {
     <Boxrow error={error} position={position} boxes={boxes} rowIndex={row} key={row}/>
   )
 
-  function startButtonClick() {
-    setHasStarted(true)
+  function chooseRandomWord() {
+    let randomNumber = Math.floor(Math.random() * possibleAnswers.length);
+    let theWord = possibleAnswers[randomNumber].toUpperCase();
+    setWord(theWord);
+  }
 
-    let randomNumber = Math.floor(Math.random() * possibleAnswers.length)
-    let theWord = possibleAnswers[randomNumber].toUpperCase()
-    setWord(theWord)
+  function startButtonClick() {
+    setHasStarted(true);
+    chooseRandomWord();
 
     let startDate = new Date().getTime();
     let countUpInterval = setInterval(countUp, 100, startDate)
-    setTimeIntervalID(countUpInterval)
+    setTimeIntervalID(countUpInterval);
+  }
+
+  function displayTime(item) {
+    let minutes = Math.floor((item % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((item % (1000 * 60)) / 1000);
+    let milliseconds = Math.floor((item % 10000) / 100);
+    let displayDistance = minutes + "m " + seconds + "." + milliseconds + "s ";
+    return displayDistance
   }
 
   function countUp(beginningDate) {
@@ -90,7 +101,7 @@ export default function App() {
     let milliseconds = Math.floor((distance % 10000) / 100);
 
     let displayDistance = minutes + "m " + seconds + "." + milliseconds + "s ";
-    setTimer(prevTimer => displayDistance)
+    setTimer(prevTimer => displayTime(distance))
   }
 
   function toggleErrorShake() {
@@ -191,9 +202,7 @@ export default function App() {
         setMessage("")
         setKeyColor(allNewKeys())
         setPosition({rowIndex: 0, columnIndex: 0})
-        let randomNumber = Math.floor(Math.random() * possibleAnswers.length)
-        let theWord = possibleAnswers[randomNumber].toUpperCase()
-        setWord(theWord)
+        chooseRandomWord();
       }
     }
   }
@@ -221,9 +230,9 @@ export default function App() {
         </div>
         <Keyboard gameOver={gameOver} delayedGameOver={delayedGameOver} setGameOver={setGameOver} timeIntervalID={timeIntervalID} keyColor={keyColor} setMessage={setMessage} colors={colors} hasStarted={hasStarted} toggleErrorShake={toggleErrorShake} word={word} words={words} position={position} setPosition={setPosition} boxes={boxes} setBoxes={setBoxes} />
       </div>}
-      {chooseGame === null && <Choosegame setChooseGame={setChooseGame}/>}
+      {chooseGame === null && <Choosegame setChooseGame={setChooseGame} name={name}/>}
       {name === "" && chooseGame !== null && <Form setName={setName}/>}
-      {gameOver && <Lowtime lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
+      {gameOver && <Lowtime displayTime={displayTime} lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
     </div>
   )
 }
