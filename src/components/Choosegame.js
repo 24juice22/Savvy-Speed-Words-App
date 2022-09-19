@@ -1,7 +1,7 @@
 import React from "react"
 import Buttons from "./Buttons"
 
-export default function Choosegame({setChooseGame, name}) {
+export default function Choosegame() {
 
     return (
         <div className="chooseGame">
@@ -12,7 +12,7 @@ export default function Choosegame({setChooseGame, name}) {
                 EXAMPLE: If you choose "3", once you correctly guess the first word, the board will reset and you will 
                     have a new word to guess. The timer will continue until you have correctly guessed all 3 words (or until you fail a word, then you lose!)
             </p>
-            <Buttons setChooseGame={setChooseGame} name={name}/>
+            <Buttons />
         </div>
     )
 }
