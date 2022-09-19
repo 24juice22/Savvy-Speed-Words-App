@@ -1,11 +1,7 @@
 import React from "react"
+import Buttons from "./Buttons"
 
-export default function Choosegame({setChooseGame}) {
-    
-    function buttonChooseGameClick(event) {
-        let numberClicked = parseInt(event.target.textContent)
-        setChooseGame(numberClicked)
-    }
+export default function Choosegame({setChooseGame, name}) {
 
     return (
         <div className="chooseGame">
@@ -16,12 +12,7 @@ export default function Choosegame({setChooseGame}) {
                 EXAMPLE: If you choose "3", once you correctly guess the first word, the board will reset and you will 
                     have a new word to guess. The timer will continue until you have correctly guessed all 3 words (or until you fail a word, then you lose!)
             </p>
-            <div className="chooseGame__buttons grid grid--cols-2">
-                <button className="btn chooseGame__btn btn-1" onClick={buttonChooseGameClick}>1</button>
-                <button className="btn chooseGame__btn btn-3" onClick={buttonChooseGameClick}>3</button>
-                <button className="btn chooseGame__btn btn-5" onClick={buttonChooseGameClick}>5</button>
-                <button className="btn chooseGame__btn btn-10" onClick={buttonChooseGameClick}>10</button>
-            </div>
+            <Buttons setChooseGame={setChooseGame} name={name}/>
         </div>
     )
 }
