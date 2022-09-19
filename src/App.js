@@ -114,21 +114,24 @@ export default function App() {
     })
   }
 
-  function addLowTime(gameNumber) {
-    let lowTimeIndex = null
-    if (chooseGame === 1) lowTimeIndex = 0
-    else if (chooseGame === 3) lowTimeIndex = 1
-    else if (chooseGame === 5) lowTimeIndex = 2
-    else lowTimeIndex = 3
-    if (otherTimer < lowTime[lowTimeIndex][19].score || lowTime[lowTimeIndex][19].score === null) {
+  function numberOfGamesIndex(chooseGame) {
+    if (chooseGame === 1) return 0
+    else if (chooseGame === 3) return 1
+    else if (chooseGame === 5) return 2
+    return 3
+  }
+
+  function addLowTime() {
+    let numberOfGames = numberOfGamesIndex(chooseGame);
+    if (otherTimer < lowTime[numberOfGames][19].score || lowTime[numberOfGames][19].score === null) {
       let array = [...lowTime]
-      array[lowTimeIndex].pop() 
-      array[lowTimeIndex].push({score: otherTimer, name: name})
-      array[lowTimeIndex].sort((a, b) => a.score - b.score)
-      for (let i = 0; i < array[lowTimeIndex].length; i++) 
-        if (array[lowTimeIndex][0].score === null) {
-          let itemRemoved = array[lowTimeIndex].shift()
-          array[lowTimeIndex].push(itemRemoved)
+      array[numberOfGames].pop() 
+      array[numberOfGames].push({score: otherTimer, name: name})
+      array[numberOfGames].sort((a, b) => a.score - b.score)
+      for (let i = 0; i < array[numberOfGames].length; i++) 
+        if (array[numberOfGames][0].score === null) {
+          let itemRemoved = array[numberOfGames].shift()
+          array[numberOfGames].push(itemRemoved)
         }
       setLowTime(array)
     }
@@ -232,7 +235,7 @@ export default function App() {
       </div>}
       {chooseGame === null && <Choosegame setChooseGame={setChooseGame} name={name}/>}
       {name === "" && chooseGame !== null && <Form setName={setName}/>}
-      {gameOver && <Lowtime displayTime={displayTime} lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
+      {gameOver && <Lowtime numberOfGamesIndex={numberOfGamesIndex} displayTime={displayTime} lowTime={lowTime} otherTimer={otherTimer} setGameOver={setGameOver} setWord={setWord} setBoxes={setBoxes} allNewBoxes={allNewBoxes} setHasStarted={setHasStarted} setMessage={setMessage} setKeyColor={setKeyColor} allNewKeys={allNewKeys} setTimer={setTimer} setPosition={setPosition} timer={timer} name={name} setGameNumber={setGameNumber} chooseGame={chooseGame} setChooseGame={setChooseGame}/>}
     </div>
   )
 }
