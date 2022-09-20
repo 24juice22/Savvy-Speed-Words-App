@@ -1,6 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
+import { SavvyContext } from "../contexts/SavvyContext";
 
-export default function Box({boxes, columnIndex, rowIndex, position, error}) {
+export default function Box({columnIndex, rowIndex}) {
+    const { boxes, position, error } = useContext(SavvyContext)
+
     const letter = boxes[rowIndex][columnIndex];
     
     return (
@@ -8,10 +11,9 @@ export default function Box({boxes, columnIndex, rowIndex, position, error}) {
             className={error && rowIndex === position.rowIndex ? 
                         "box error" : 
                         position.rowIndex > rowIndex ? 
-                        "box boxFlip" : 
-                        "box"
+                            `box ${letter.color} boxFlip` : 
+                            "box"
             }
-            id={letter.color}
         >
             {letter.value}
         </div>
