@@ -1,11 +1,11 @@
-import React from "react"
-import Box from "./Box"
+import React from "react";
+import Box from "./Box";
 
-export default function Boxrow({error, rowIndex, position, boxes}) {
-    const boxIndex = [0, 1, 2, 3, 4]
+export default function Boxrow({rowIndex}) {
+    const boxIndex = [0, 1, 2, 3, 4];
     const createBoxes = boxIndex.map(index => 
-        <Box error={error} columnIndex={index} rowIndex={rowIndex} position={position} boxes={boxes} key={index}/>
-    )
+        <Box rowIndex={rowIndex} columnIndex={index} key={index}/>
+    );
      
 
     return (
