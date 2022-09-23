@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
+import React, { useContext } from "react";
 import { SavvyContext } from "../contexts/SavvyContext";
 
 export default function Box({columnIndex, rowIndex}) {
-    const { boxes, position, error } = useContext(SavvyContext)
+    const { boxes, position, error } = useContext(SavvyContext);
 
     const letter = boxes[rowIndex][columnIndex];
     
@@ -12,7 +12,7 @@ export default function Box({columnIndex, rowIndex}) {
                         "box error" : 
                         position.rowIndex > rowIndex ? 
                             `box ${letter.color} boxFlip` : 
-                            "box"
+                            `box ${letter.color}`
             }
         >
             {letter.value}
