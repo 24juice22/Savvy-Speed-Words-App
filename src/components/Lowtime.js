@@ -1,8 +1,8 @@
-import React from "react"
-import Buttons from "./Buttons"
-import LowTimeColumn from "./LowTimeColumn"
+import React from "react";
+import Buttons from "./Buttons";
+import LowTimeColumn from "./LowTimeColumn";
 
-export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, timer, name, chooseGame}) {
+export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, displayTimer, name, chooseGame}) {
     
     /////////////// Create Two Arrays of the Lowest Scores //////////////////
     let arrayIndex = numberOfGamesIndex(chooseGame);
@@ -24,7 +24,7 @@ export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, timer
 
     //////////// Map Over Arrays to Render List Items of Names and Scores ///////////
     function lowTimeColors(value) {
-       return {color: value.score === timer && name === value.name ? "rgb(5, 253, 5)" : "white"}
+       return {color: value.score === displayTimer && name === value.name ? "rgb(5, 253, 5)" : "white"}
     }
 
     let scoreName = firstColumn.map(scoreInstance => {
@@ -56,7 +56,7 @@ export default function Lowtime({numberOfGamesIndex, displayTime, lowTime, timer
                 <LowTimeColumn name={scoreName} score={scoreList} start={"1"}/>
                 <LowTimeColumn name={scoreSecondName} score={scoreSecondList} start={"11"}/>
             </div>
-            <h3 className="lowTime__your-score"><span>Your Time:</span>{timer}</h3>
+            <h3 className="lowTime__your-score"><span>Your Time:</span>{displayTimer}</h3>
             <Buttons />
         </div>
     )
