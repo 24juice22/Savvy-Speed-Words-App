@@ -1,26 +1,26 @@
-import React, { useContext } from "react"
-import { SavvyContext } from "../contexts/SavvyContext"
+import React, { useContext } from "react";
+import { SavvyContext } from "../contexts/SavvyContext";
 
 function Buttons() {
-    const { setGameOver, setBoxes, setHasStarted, setMessage, setKeyColor, setTimer, setPosition, setGameNumber, allNewBoxes, allNewKeys, setChooseGame, name } = useContext(SavvyContext)
+    const { setGameOver, setBoxes, setHasStarted, setMessage, setKeyColor, setDisplayTimer, setPosition, setGameNumber, allNewBoxes, allNewKeys, setChooseGame, name } = useContext(SavvyContext);
 
     ///////// Start New Game of Specified Number of Words ////////////
     function newGame() {
-        setGameOver(prevGameOver => !prevGameOver)
-        setBoxes(allNewBoxes())
-        setHasStarted(prevHasStarted => !prevHasStarted)
-        setMessage("")
-        setKeyColor(allNewKeys())
-        setTimer("")
-        setPosition({rowIndex: 0, columnIndex: 0})
-        setGameNumber(1)
+        setGameOver(prevGameOver => !prevGameOver);
+        setBoxes(allNewBoxes());
+        setHasStarted(prevHasStarted => !prevHasStarted);
+        setMessage("");
+        setKeyColor(allNewKeys());
+        setDisplayTimer("");
+        setPosition({rowIndex: 0, columnIndex: 0});
+        setGameNumber(1);
     }
 
     function buttonChooseGameClick(event) {
-        let numberOfWordsChosen = parseInt(event.target.textContent)
-        setChooseGame(numberOfWordsChosen)
+        let numberOfWordsChosen = parseInt(event.target.textContent);
+        setChooseGame(numberOfWordsChosen);
         if (name !== "")
-            newGame()
+            newGame();
     }
 
     return (
