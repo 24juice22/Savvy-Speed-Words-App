@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Savvy-Speed-Words-App/static/css/main.02c5e52f.css",
+    "main.css": "/Savvy-Speed-Words-App/static/css/main.6933f7d0.css",
     "main.js": "/Savvy-Speed-Words-App/static/js/main.492ba62b.js",
     "index.html": "/Savvy-Speed-Words-App/index.html",
-    "main.02c5e52f.css.map": "/Savvy-Speed-Words-App/static/css/main.02c5e52f.css.map",
+    "main.6933f7d0.css.map": "/Savvy-Speed-Words-App/static/css/main.6933f7d0.css.map",
     "main.492ba62b.js.map": "/Savvy-Speed-Words-App/static/js/main.492ba62b.js.map"
   },
   "entrypoints": [
-    "static/css/main.02c5e52f.css",
+    "static/css/main.6933f7d0.css",
     "static/js/main.492ba62b.js"
   ]
 }
