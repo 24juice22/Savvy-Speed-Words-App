@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import Key from "./Key";
 
 export default function Keyboard({wordEntered, boxes, setBoxes, position, setPosition, words, word, toggleErrorShake, colors, hasStarted, gameOver, setMessage, keyColor, timeIntervalID, delayedGameOver}) {  
@@ -23,7 +23,7 @@ export default function Keyboard({wordEntered, boxes, setBoxes, position, setPos
     }
     
     ///// Make Keyboard Functional /////////////
-    const handleKeyboard = React.useCallback((event) => {
+    const handleKeyboard = useCallback((event) => {
         function insert(letter) {
             let newLetter = letter.toLowerCase();
             if (event.key === newLetter) 
@@ -50,7 +50,7 @@ export default function Keyboard({wordEntered, boxes, setBoxes, position, setPos
     })
 
     //////// Listen for Keydown and Clean Up ////////
-    React.useEffect(() => {
+    useEffect(() => {
         document.addEventListener("keydown", handleKeyboard);
         return () => {
             document.removeEventListener("keydown", handleKeyboard);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Boxrow from "./components/Boxrow";
 import Keyboard from "./components/Keyboard";
 import possibleAnswers from "./possibleAnswers";
@@ -9,21 +9,21 @@ import Choosegame from "./components/Choosegame";
 import { SavvyContext } from "./contexts/SavvyContext";
 
 export default function App() {
-  const [word, setWord] = React.useState("");
-  const [boxes, setBoxes] = React.useState(allNewBoxes());
-  const [position, setPosition] = React.useState({rowIndex: 0, columnIndex: 0});
-  const [keyColor, setKeyColor] = React.useState(allNewKeys());
-  const [hasStarted, setHasStarted] = React.useState(false);
-  const [error, setError] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-  const [displayTimer, setDisplayTimer] = React.useState("");
-  const [timer, setTimer] = React.useState("");
-  const [gameOver, setGameOver] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [chooseGame, setChooseGame] = React.useState(null);
-  const [gameNumber, setGameNumber] = React.useState(1);
-  const [timeIntervalID, setTimeIntervalID] = React.useState(0);
-  const [lowTime, setLowTime] = React.useState(
+  const [word, setWord] = useState("");
+  const [boxes, setBoxes] = useState(allNewBoxes());
+  const [position, setPosition] = useState({rowIndex: 0, columnIndex: 0});
+  const [keyColor, setKeyColor] = useState(allNewKeys());
+  const [hasStarted, setHasStarted] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [displayTimer, setDisplayTimer] = useState("");
+  const [timer, setTimer] = useState("");
+  const [gameOver, setGameOver] = useState(false);
+  const [name, setName] = useState("");
+  const [chooseGame, setChooseGame] = useState(null);
+  const [gameNumber, setGameNumber] = useState(1);
+  const [timeIntervalID, setTimeIntervalID] = useState(0);
+  const [lowTime, setLowTime] = useState(
     JSON.parse(localStorage.getItem("greatTime")) || [
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
       [{score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}, {score: null, name: ""}],
@@ -206,7 +206,7 @@ export default function App() {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("greatTime", JSON.stringify(lowTime));
   }, [lowTime])
 
