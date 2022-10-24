@@ -26,7 +26,7 @@ export default function Keyboard({wordEntered, boxes, setBoxes, position, setPos
     const handleKeyboard = useCallback((event) => {
         function insert(letter) {
             let newLetter = letter.toLowerCase();
-            if (event.key === newLetter) 
+            if (event.key.toLowerCase()=== newLetter) 
                 insertLetter(letter)
         }
 
