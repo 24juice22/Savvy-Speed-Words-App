@@ -8,12 +8,14 @@ export default function Form({setName}) {
 
     return (
         <div className="form">
-            <h2 className="form__title">PLEASE ENTER YOUR NAME</h2>
-            <p>(Maximum of 14 Characters)</p>
-            <form onSubmit={handleSubmit}>
-                <input className="form__input" type="text" maxLength="14" required/>
-                <input className="btn form__btn" type="submit" value="SUBMIT" />
-            </form>
+            <div className="container">
+                <h2 className="form__title">PLEASE ENTER YOUR NAME</h2>
+                <p className="form__directions">(Maximum of 12 Characters)</p>
+                <form onSubmit={handleSubmit}>
+                    <input className="form__input" type="text" maxLength="12" required/>
+                    <input className="btn form__btn" type="submit" value="SUBMIT" />
+                </form>
+            </div>
         </div>
     )
 }
