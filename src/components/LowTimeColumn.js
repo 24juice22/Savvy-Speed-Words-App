@@ -6,7 +6,7 @@ function LowTimeColumn({name, score, start}) {
             <ol start={start} className="lowTime__list">
                 {name}
             </ol>
-            <ul className="lowTime__list lowTime__list-score">
+            <ul className="lowTime__list lowTime__list-time">
                 {score}
             </ul>
         </div>
