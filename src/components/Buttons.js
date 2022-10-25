@@ -24,11 +24,11 @@ function Buttons() {
     }
 
     return (
-            <div className="chooseGame__buttons" >
-                <button className="btn btn-1 chooseGame__btn" onClick={buttonChooseGameClick}>1</button>
-                <button className="btn btn-3 chooseGame__btn" onClick={buttonChooseGameClick}>3</button>
-                <button className="btn btn-5 chooseGame__btn" onClick={buttonChooseGameClick}>5</button>
-                <button className="btn btn-10 chooseGame__btn" onClick={buttonChooseGameClick}>10</button>
+            <div className="buttons">
+                <button className="btn" onClick={buttonChooseGameClick}>1</button>
+                <button className="btn btn--green" onClick={buttonChooseGameClick}>3</button>
+                <button className="btn btn--blue" onClick={buttonChooseGameClick}>5</button>
+                <button className="btn btn--pink" onClick={buttonChooseGameClick}>10</button>
             </div>
     )
 }
