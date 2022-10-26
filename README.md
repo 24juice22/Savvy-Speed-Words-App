@@ -11,7 +11,7 @@ If you are familiar with the rules of the popular online game "Wordle" then you 
 - The color of the boxes will show you whether your letter was in the correct position, in the wrong position, or not in the word at all.
 
 Example:
-![alt text](./src/images/Correct.png)
+![Game Screenshot](./src/images/colorsScreenshot.png)
 
 - Letter A is in the correct position
 - Letters L and N are in the word, but in the wrong position
