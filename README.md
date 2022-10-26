@@ -1,18 +1,21 @@
-# Getting Started with Create React App
+# Getting Started with Savvy Speed Words App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to Play
 
-## Available Scripts
+If you are familiar with the rules of the popular online game "Wordle" then you know the rules for Savvy Speed Words. However, be aware that the color scheme is different. Correct letters are pink, letters that are in the incorrect position are blue, and letters that are not in the word are gray.
 
-In the project directory, you can run:
+### `Rules`
 
-### `npm start`
+- You have 6 tries to correctly guess the random word.
+- Each guess must be a valid 5 letter word, otherwise an error message will be displayed. If your word is invalid, you can delete letters and retry entering the word.
+- The color of the boxes will show you whether your letter was in the correct position, in the wrong position, or not in the word at all.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Example:
+![alt text](./src/images/Correct.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Letter A is in the correct position
+- Letters L and N are in the word, but in the wrong position
+- Letters E and R are not in the word
 
 ### `npm test`
 
