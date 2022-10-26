@@ -24,7 +24,6 @@ body {
 }
 
 /* Flex & Grid */
-
 .flex {
   display: flex;
   justify-content: center;
@@ -71,7 +70,7 @@ body {
 }
 
 .btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .btn--green {
@@ -275,16 +274,16 @@ form {
   width: unset;
 }
 
-.boxPink {
+.box--pink {
   background-color: var(--color-pink);
 }
 
-.boxBlue {
+.box--blue {
   background-color: var(--color-blue);
   border-color: var(--color-blue);
 }
 
-.boxGray {
+.box--gray {
   background-color: var(--color-gray);
   border-color: var(--color-gray);
 }
@@ -374,8 +373,8 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 2.9rem;
-  min-height: 4.5rem;
+  width: 2.9rem;
+  height: 4.5rem;
   margin: 0.1rem;
   color: var(--color-purple);
   border: 2px solid var(--color-purple);
@@ -397,7 +396,7 @@ form {
   align-items: center;
   color: white;
   font-size: 2rem;
-  max-width: 4rem;
+  width: 4rem;
   text-shadow: 2px 2px 2px black;
 }
 
@@ -411,19 +410,19 @@ form {
   border-color: var(--color-red);
 }
 
-.keyPink {
+.key--pink {
   background-color: var(--color-pink);
   border-color: var(--color-pink);
   color: white;
 }
 
-.keyBlue {
+.key--blue {
   background-color: var(--color-blue);
   border-color: var(--color-blue);
   color: white;
 }
 
-.keyGray {
+.key--gray {
   background-color: var(--color-gray);
   border-color: var(--color-gray);
   color: white;
@@ -456,12 +455,12 @@ form {
   }
 
   .key {
-    min-width: 6rem;
+    width: 6rem;
   }
 
   .key--special {
     font-size: 2.5rem;
-    min-width: 10rem;
+    width: 10rem;
   }
 }
 
@@ -512,8 +511,8 @@ form {
   }
   
   .key {
-    min-width: 4rem;
-    min-height: 3rem;
+    width: 4rem;
+    height: 3rem;
     margin: 0.1rem;
     border-width: 2px;
     font-size: 2rem;
@@ -522,6 +521,7 @@ form {
   
   .key--special {
     text-shadow: 1.5px 1.5px 1.5px black;
+    width: 6rem;
   }
 }
 
