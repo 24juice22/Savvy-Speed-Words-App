@@ -11,11 +11,16 @@ If you are familiar with the rules of the popular online game "Wordle" then you 
 - The color of the boxes will show you whether your letter was in the correct position, in the wrong position, or not in the word at all.
 
 Example:
+
 ![Game Screenshot](./src/images/colorsScreenshot.png)
 
-- Letter A is in the correct position
-- Letters L and N are in the word, but in the wrong position
-- Letters E and R are not in the word
+- Letter A is in the correct position (PINK)
+- Letters L and N are in the word, but in the wrong position (BLUE)
+- Letters E and R are not in the word (GRAY)
+
+The game either ends when you correctly guess the number of words that you chose to solve (1, 3, 5, or 10) or you fail to guess a word within 6 tries.
+
+If you chose to guess more than 1 word, then after you correctly guess the first word, a new random word will be chosen and you will have to guess it.
 
 ### `npm test`
 
