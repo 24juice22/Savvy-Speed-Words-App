@@ -152,9 +152,9 @@ export default function App() {
     for (let i = 0; i < wordEntered.length; i++) {
         let index = keyboardColor.map(item => item.value).indexOf(wordEntered[i]);
         if (wordEntered[i] === word[i]) {
-            board[position.rowIndex][i].color = "boxPink";
+            board[position.rowIndex][i].color = "box--pink";
             setBoxes(board);
-            keyboardColor[index].color = "keyPink";
+            keyboardColor[index].color = "key--pink";
             setKeyColor(keyboardColor);
             if (pinkHash[wordEntered[i]] >= 1) 
                 pinkHash[wordEntered[i]] += 1;
@@ -162,10 +162,10 @@ export default function App() {
                 pinkHash[wordEntered[i]] = 1;
         }
         else if (word.includes(wordEntered[i]) && (hashOfWord[wordEntered[i]] - pinkHash[wordEntered[i]] >= 1) && blueHash[wordEntered[i]] !== 1) {
-            board[position.rowIndex][i].color = "boxBlue";
+            board[position.rowIndex][i].color = "box--blue";
             setBoxes(board);
-            if (keyboardColor[index].color !== "keyPink") 
-                keyboardColor[index].color = "keyBlue";
+            if (keyboardColor[index].color !== "key--pink") 
+                keyboardColor[index].color = "key--blue";
             setKeyColor(keyboardColor);
             if (wordEntered[i] in blueHash)
                 blueHash[wordEntered[i]] += 0;
@@ -173,17 +173,17 @@ export default function App() {
                 blueHash[wordEntered[i]] = 1;
         }
         else {
-          board[position.rowIndex][i].color = "boxGray";
+          board[position.rowIndex][i].color = "box--gray";
           setBoxes(board);
-          if (keyboardColor[index].color !== "keyPink" && keyboardColor[index].color !== "keyBlue")
-              keyboardColor[index].color = "keyGray";
+          if (keyboardColor[index].color !== "key--pink" && keyboardColor[index].color !== "keyBlue")
+              keyboardColor[index].color = "key--gray";
           setKeyColor(keyboardColor);
         }   
     }
    
     for (let j = wordEntered.length - 1; j >= 0; j--) {
       if (word.includes(wordEntered[j]) && wordEntered[j] !== word[j] && (hashOfWord[wordEntered[j]] - pinkHash[wordEntered[j]] < 1)) {
-        board[position.rowIndex][j].color = "boxGray";
+        board[position.rowIndex][j].color = "box--gray";
         setBoxes(board);
       }
     }
