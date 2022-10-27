@@ -20,12 +20,13 @@ Example:
 
 The game either ends when you correctly guess the number of words that you chose to solve (1, 3, 5, or 10) or you fail to guess a word within 6 tries.
 
-If you chose to guess more than 1 word, then after you correctly guess the first word, a new random word will be chosen and you will have to guess it.
+If you chose to guess more than 1 word, then after you correctly guess the first word, a new random word will be chosen and you will have to guess it. This continues until you have solved the number of words that you chose.
 
-### `npm test`
+### `Typing`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- In order to type your letters you can either use your keyboard or the one provided within the app.
+- Use the "Backspace" or "Delete" Keys to delete a letter if using your keyboard.
+- Click "Enter" to submit your word.
 
 ### `npm run build`
 
