@@ -1,5 +1,9 @@
 # Getting Started with Savvy Speed Words App
 
+## Where to Play
+
+Simply click on the following link: [https://24juice22.github.io/Savvy-Speed-Words-App/](https://24juice22.github.io/Savvy-Speed-Words-App/)
+
 ## How to Play
 
 If you are familiar with the rules of the popular online game "Wordle" then you know the rules for Savvy Speed Words. However, be aware that the color scheme is different. Correct letters are pink, letters that are in the incorrect position are blue, and letters that are not in the word are gray.
@@ -27,7 +31,3 @@ If you chose to guess more than 1 word, then after you correctly guess the first
 - In order to type your letters you can either use your keyboard or the one provided within the app.
 - Use the "Backspace" or "Delete" Keys to delete a letter if using your keyboard.
 - Click "Enter" to submit your word.
-
-### `Where to Play`
-
-Simply click on the following link: [https://24juice22.github.io/Savvy-Speed-Words-App/](https://24juice22.github.io/Savvy-Speed-Words-App/)
