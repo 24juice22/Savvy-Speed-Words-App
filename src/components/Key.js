@@ -5,6 +5,6 @@ export default function Key({letter, keyColor, insertLetter}) {
     let insertColor = keyColor[keyIndex].color;
      
     return (
-        <div className={`key key-letter ${insertColor}`} onClick={() => insertLetter(letter)}>{letter}</div>
+        <div className={`key key--letter ${insertColor}`} onClick={() => insertLetter(letter)}>{letter}</div>
     )
 }
